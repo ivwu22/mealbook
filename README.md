@@ -12,9 +12,7 @@ We will be using the following API to load our databases with the delicious food
 * AAU I’d want to be able to view all the recipes on one page.
 * AAU I'd want to be able to favorite recipes and refer back to the list.
 
-
 ## Default Routes
-
 
 ## Installation Instructions
 

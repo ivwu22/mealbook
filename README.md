@@ -16,4 +16,4 @@ We will be using the following API to load our databases with the delicious food
 
 ## Installation Instructions
 
-#### 1. 
+#### 1. Install NPM dependencies

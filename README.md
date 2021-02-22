@@ -11,9 +11,6 @@ We will be using the following API to load our databases with the delicious food
 * AAU I'd want to be able to sign into my account to view recipes.
 * AAU I’d want to be able to view all the recipes on one page.
 * AAU I'd want to be able to favorite recipes and refer back to the list.
-* AAU I’d want to have a landing page after I sign in where I can view my favorited recipes and selected meals for the day.
-* AAU I’d want to be able to select a recipe and see more details about their ingredients and steps.
-* AAU I'd want to be able to search up recipes based on their names.
 
 
 ## Default Routes

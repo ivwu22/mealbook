@@ -4,6 +4,8 @@
 Our application will allow users to plan their meals for the next 7 days. With working from home on the rise and restrictions on dining at restaurants, cooking at home has become a routine in many people’s lives. Oftentimes it is hard to plan your grocery haul and what to eat for the next day, but this application will help users find recipes, favorite those that they like, plan the meals out, and have a shopping list generated!  
 We will be using the following API to load our databases with the delicious food: https://rapidapi.com/spoonacular/api/recipe-food-nutrition/endpoints
 
+## Wireframes
+
 
 ## User Stories
 
@@ -18,4 +20,5 @@ We will be using the following API to load our databases with the delicious food
 
 #### 1. Install NPM dependencies
 #### 2.
-#### 3. ????
+
+

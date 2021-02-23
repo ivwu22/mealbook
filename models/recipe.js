@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.recipe.hasMany(models.instruction)
       models.recipe.hasMany(models.ingredient)
-      models.recipe.belongsToMany(models.user, {through: favorites})
+      models.recipe.belongsToMany(models.user, {through: "favorites"})
     }
   };
   recipe.init({

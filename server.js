@@ -5,6 +5,7 @@ const session = require('express-session');
 const flash = require("connect-flash")
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn')
+const axios = require('axios')
 
 const app = express();
 
@@ -37,10 +38,32 @@ app.use((req, res, next) => {
   // current user to res.locals
   res.locals.alerts = req.flash()
   res.locals.currentUser = req.user
-
   next()
 })
 
+app.get('/info', (req, res)=>{
+  
+
+  var options1 = {
+    method: 'GET',
+    url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/33631/analyzedInstructions',
+    params: {stepBreakdown: 'true'},
+    headers: {
+      'x-rapidapi-key': '4cb263df0bmsh3ff5c04afde99b5p1ad726jsn1de166cb145e',
+      'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+    }
+  };
+  axios.request(options1).then(function (response) {
+    console.log(response.data[0].steps);
+    console.log(response.data[0].ingredients)
+    res.send("Hello")
+  }).catch(function (error) {
+    console.error(error);
+  });
+
+
+
+})
 
 app.get('/', (req, res) => {
   res.render('main/index');

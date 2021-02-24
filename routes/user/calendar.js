@@ -2,8 +2,10 @@
 const express = require('express');
 const db = require('../../models');
 const router = express.Router();
+const isLoggedIn = require('../../middleware/isLoggedIn')
 
-router.get('/calendar', (req, res) => {
-    res.send('hello')
+router.get('/', isLoggedIn, (req, res) => {
+    console.log(req.user.id);
+    res.render('user/calendar.ejs')
 })
 module.exports = router;

@@ -4,7 +4,7 @@ const db = require('../../models');
 const router = express.Router();
 
 router.get('/favorite', (req, res) => {
-    res.send('hello')
+   res.render('user/favorites.ejs');
 })
 
 module.exports = router;

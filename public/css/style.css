@@ -6,5 +6,22 @@ nav ul li {
 }
 
 h1 {
-  color: chartreuse;
+  color: rgb(11, 78, 5);
+}
+
+body {
+  background-color: rgb(153, 241, 153);
+}
+
+li {
+  padding: 5px;
+}
+
+.card-body, .card, nav {
+  font-family: Georgia, Times, 'Times New Roman', serif;
+  background-color:rgb(209, 250, 170);
+  color:maroon;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }

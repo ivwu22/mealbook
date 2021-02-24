@@ -46,7 +46,7 @@ app.get('/info', (req, res)=>{
 
   var options1 = {
     method: 'GET',
-    url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/33631/analyzedInstructions',
+    url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/649850/analyzedInstructions',
     params: {stepBreakdown: 'true'},
     headers: {
       'x-rapidapi-key': '4cb263df0bmsh3ff5c04afde99b5p1ad726jsn1de166cb145e',
@@ -55,7 +55,6 @@ app.get('/info', (req, res)=>{
   };
   axios.request(options1).then(function (response) {
     console.log(response.data[0].steps);
-    console.log(response.data[0].ingredients)
     res.send("Hello")
   }).catch(function (error) {
     console.error(error);
@@ -74,6 +73,7 @@ app.get('/profile', isLoggedIn, (req, res) => {
 });
 
 app.use('/auth', require('./routes/auth'));
+app.use('/info', require('./routes/info'));
 
 const server = app.listen(process.env.PORT || 3000, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
 

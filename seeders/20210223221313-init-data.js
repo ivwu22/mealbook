@@ -324,7 +324,7 @@ module.exports = {
       {
         stepNumber: 2,
         step: 'Process until you have a coarse paste.',
-        recipeId: 1,
+        // recipeId: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

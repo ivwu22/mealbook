@@ -1,2 +1,9 @@
-<%- include('../partials/navbar')  %> 
 
+<br>
+<h1>Explore recipes to find what to cook!</h1>
+<hr>
+<% recipes.forEach((recipe) => { %> 
+    <li>
+        <%= recipe.name %>
+    </li>
+<% }) %>

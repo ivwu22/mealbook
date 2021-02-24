@@ -59,9 +59,6 @@ app.get('/info', (req, res)=>{
   }).catch(function (error) {
     console.error(error);
   });
-
-
-
 })
 
 app.get('/', (req, res) => {

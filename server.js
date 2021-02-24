@@ -72,7 +72,7 @@ app.get('/profile', isLoggedIn, (req, res) => {
 
 app.use('/auth', require('./routes/auth'));
 app.use('/recipe', require('./routes/recipe'));
-app.use('/user/favorite', require('./routes/user/favorite.js'));
+app.use('/user/favorites', require('./routes/user/favorite.js'));
 app.use('/user/calendar', require('./routes/user/calendar.js'));
 app.use('/user/dashboard', require('./routes/user/dashboard.js'));
 

@@ -4,6 +4,6 @@
 <hr>
 <% recipes.forEach((recipe) => { %> 
     <li>
-        <%= recipe.name %>
+        <%- include('../partials/recipeCard')  %> 
     </li>
 <% }) %>

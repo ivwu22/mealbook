@@ -1,7 +1,10 @@
 //route to show favorite recipes
-let express = require('express');
-let db = require('../models');
-let router = express.Router();
+const express = require('express');
+const db = require('../../models');
+const router = express.Router();
 
+router.get('/favorite', (req, res) => {
+    res.send('hello')
+})
 
 module.exports = router;

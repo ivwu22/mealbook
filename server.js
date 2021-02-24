@@ -69,6 +69,8 @@ app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile');
 });
 
+app.use('/recipes'), require('./routes/recipe');
+app.use('/user'), require('./routes/user');
 app.use('/auth', require('./routes/auth'));
 app.use('/info', require('./routes/info'));
 

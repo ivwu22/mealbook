@@ -67,12 +67,13 @@ app.get('/', (req, res) => {
 
 app.get('/profile', isLoggedIn, (req, res) => {
   res.render('profile');
-});
+});                
 
-app.use('/recipes'), require('./routes/recipe');
-app.use('/user'), require('./routes/user');
+app.use('/recipe',require('./routes/recipe'));
+app.use('/user/favorite', require('./routes/user/favorite.js'));
+app.use('/user/calendar', require('./routes/user/calendar.js'));
+app.use('/user/favorite', require('./routes/user/favorite.js'));
 app.use('/auth', require('./routes/auth'));
-app.use('/info', require('./routes/info'));
 
 const server = app.listen(process.env.PORT || 3000, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
 

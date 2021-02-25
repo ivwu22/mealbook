@@ -72,10 +72,10 @@ app.get('/profile', isLoggedIn, (req, res) => {
 
 app.use('/auth', require('./routes/auth'));
 app.use('/recipe', require('./routes/recipe'));
-app.use('/user/favorite', require('./routes/user/favorite.js'));
+app.use('/user/favorites', require('./routes/user/favorite.js'));
 app.use('/user/calendar', require('./routes/user/calendar.js'));
 app.use('/user/dashboard', require('./routes/user/dashboard.js'));
 
-const server = app.listen(process.env.PORT || 3000, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
+const server = app.listen(process.env.PORT || 8000, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 8000}🎧`));
 
 module.exports = server;

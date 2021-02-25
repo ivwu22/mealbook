@@ -2,8 +2,31 @@
 const express = require('express');
 const db = require('../../models');
 const router = express.Router();
+const isLoggedIn = require('../../middleware/isLoggedIn')
 
-router.get('/calendar', (req, res) => {
-    res.send('hello')
+router.get('/', isLoggedIn, (req, res) => {
+    console.log('the user is:', req.user.id);
+    db.user.findOne({
+        where: {
+            id:req.user.id,
+        }, include: [db.recipe]
+    }).then((foundUser)  => {
+        db.user.findAll({
+            where: {
+                id: 1
+            }, include: [db.recipe]
+        }).then((foundRecipes) => {
+            console.log('-------------');
+            // console.log(foundRecipes[0].recipes[0].dataValues.favorites.dataValues.day);      
+            // console.log(foundRecipes[0].recipes);  
+            res.render('user/calendar.ejs', {
+                recipesList:foundRecipes[0].recipes,
+                day:foundRecipes[0].recipes[0].dataValues.favorites.dataValues.day
+            })
+        })
+    }).catch((error) => {
+        console.log(error);
+        res.status(404).render('main/404')
+    })
 })
 module.exports = router;

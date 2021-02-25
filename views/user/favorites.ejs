@@ -1,0 +1,7 @@
+<h1>Your favorites here</h1>
+
+<%favoritesList.forEach(favorite=> { %>
+    <div>
+        <%- include('../partials/recipeCard', {recipe:favorite}) %>
+    </div>
+<% }) %>

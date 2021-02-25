@@ -43,6 +43,23 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        name: 'Breakfast Pizza',
+        picture: 'https://spoonacular.com/recipeImages/Breakfast-Pizza-559251.jpg',
+        servings: 6,
+        preptime: 25,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: 'Spaghetti Carbonara',
+        picture: 'https://spoonacular.com/recipeImages/Spaghetti-Carbonara-535835.jpg',
+        servings: 4,
+        preptime: 25,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+
     ], {returning: true});
     console.log('bulk insert: ', bulkRecipes);
 

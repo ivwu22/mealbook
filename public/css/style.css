@@ -6,11 +6,11 @@ nav ul li {
 }
 
 h1 {
-  color: rgb(11, 78, 5);
+  color: rgb(146, 236, 140);
 }
 
 body {
-  background-color: rgb(153, 241, 153);
+  background-color: rgba(232, 250, 232, 0.377);
   align-items: center;
   text-align: center;
 }
@@ -19,11 +19,19 @@ li {
   padding: 5px;
 }
 
-.card-body, .card, nav {
+.card-body, .card, {
   font-family: Georgia, Times, 'Times New Roman', serif;
-  background-color:rgb(209, 250, 170);
-  color:maroon;
+  background-color:rgb(33, 182, 19);
+  color:rgb(213, 238, 180);
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin:3px;
+  padding: 5px;
+  border-radius: 15%;
 }
+
+div {
+  background-color:ivory
+}
+

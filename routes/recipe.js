@@ -15,15 +15,6 @@ router.get('/', (req,res) => {
     })
 })
 
-router.get('/', (req,res) => {
-    db.recipe.findAll()
-    .then((recipes) => {
-        res.render('recipe/explore', {recipes:recipes})
-    }).catch((error) => {
-        res.status(404).render('main/404')
-    })
-})
-
 router.get('/details/:id', (req,res) => {
     db.recipe.findOne({
         where:{
@@ -47,4 +38,5 @@ router.get('/details/:id', (req,res) => {
         res.status(404).render('main/404')
     })
 })
+
 module.exports = router;

@@ -1,14 +1,18 @@
-<div class="card" style="width: 18rem;">
+
     <h3 class="card-title"><%= recipe.name %> </h3>
   <img src="<%= recipe.picture  %> " class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-text"> Serving Size: <%= recipe.servings %> </p>
     <p class="card-text"> Prep Time (in minutes): <%= recipe.preptime %> </p>
+<<<<<<< HEAD
     <form method="POST" action="/user/favorites/<%=recipe.id%>">
       <button type="submit" class="btn btn-warning">Add to Favorites</button>
     </form> 
     <form method="GET" action="/recipe/details/<%=recipe.id%>">
       <button type="submit" class="btn btn-warning">More Details</button>
     </form>
+=======
+    <a href="#" class="btn btn-success">Add to Favorites</a>
+    <a href="/recipe/details" class="btn btn-success">Make It!</a>
+>>>>>>> submain
   </div>
-</div>

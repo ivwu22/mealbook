@@ -1,0 +1,11 @@
+<h1>Your meals here</h1>
+
+<%recipesList.forEach((recipe)=> { %>
+    <div>
+        <% console.log(day) %> 
+        <% if (day) { %>
+        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+        <% }%>
+
+    </div>
+<% }) %>

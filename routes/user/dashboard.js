@@ -4,17 +4,35 @@ const db = require('../../models');
 const isLoggedIn = require('../../middleware/isLoggedIn')
 const router = express.Router();
 
+
+
+// Routes
 router.get('/', isLoggedIn, (req, res) => {
     const randomRecipes = loadRandomRecipes();
-    
     db.user.findOne({
         where: {
             id: req.user.id
         }, include:[db.recipe]
     }).then(function(foundUser){
-        res.render('user/dashboard', {userFavorites:foundUser.recipes, recipes:randomRecipes})
+        const favoriteRecipeId = [];
+        for(let item in foundUser.recipes) {
+            favoriteRecipeId.push(foundUser.recipes[item].dataValues.id)
+        }
+        res.render('user/dashboard', {userFavorites:foundUser.recipes, recipes:randomRecipes, isFavorite: favoriteRecipeId})
     })
 })
+
+
+
+
+
+// Helper functions for routes
+
+function loadRecipesForDay(){
+    const favoritedByDays = [];
+    
+    return favoritedByDays
+}
 
 function loadRandomRecipes(){
     const randomRecipes = [];
@@ -41,6 +59,8 @@ function getTwoRandom(max){
     }
     return randomNumbers;
 }
+
+//
 
 
 module.exports = router;

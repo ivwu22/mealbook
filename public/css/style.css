@@ -11,6 +11,8 @@ h1 {
 
 body {
   background-color: rgb(153, 241, 153);
+  align-items: center;
+  text-align: center;
 }
 
 li {

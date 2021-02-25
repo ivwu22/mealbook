@@ -3,9 +3,9 @@
 <%recipesList.forEach((recipe, index)=> { %>
     <div>
         <% console.log(">>>>>>>>", day[index]) %> 
-        <% if (day[index]) { %>
+        <% if (day[index] === 1) { %>
+            Monday:
         <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
-
     </div>
 <% }) %>

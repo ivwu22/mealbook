@@ -3,17 +3,17 @@
 <h1>Explore recipes to find what to cook!</h1>
 <hr>
 
+<% recipes.forEach((recipe) => { %> 
 <div class="row">
     <div class="col-sm-6">
         <div class="card">
             <div class="card-body">
-                <% recipes.forEach((recipe) => { %> 
                 <li style="list-style-type: none;">
                 <%- include('../partials/recipeCard', {recipe:recipe})  %> 
                 </li>
-                <% }) %>
             </div>
         </div>
     </div>
 </div>
+<% }) %>
 

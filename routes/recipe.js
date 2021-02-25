@@ -15,4 +15,28 @@ router.get('/', (req,res) => {
     })
 })
 
+router.get('/details/:id', (req,res) => {
+    db.recipe.findOne({
+        where:{
+            id: req.params.id
+        }
+    })
+    .then((recipes) => {
+        db.instruction.findAll({
+            where: {
+                recipeId : req.params.id
+            }
+        }).then((instructions) => {
+            const recipeDeets = {
+                instructions:instructions,
+                recipes: recipes
+            }
+            res.render('recipe/details', {recipeDeets})
+        })
+
+    }).catch((error) => {
+        res.status(404).render('main/404')
+    })
+})
+
 module.exports = router;

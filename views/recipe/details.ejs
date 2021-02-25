@@ -1,0 +1,20 @@
+<div>
+    <h2>Ingredients & Instructions</h2>
+    <% console.log('-----------') %>
+    <% console.log(recipeDeets) %>
+    <% console.log('-----------') %>
+    <div class="row">
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%//= recipes.name %> </h5>
+              <img src="<%//= recipes.picture %> " alt="yummy photo of recipe">
+              <%// recipes.forEach((recipe, instructions) => { %>
+                  <p class="card-text"><%//= recipe.id %> <%//= instructions.stepNumber %>. <%//= instructions.step %></p>
+            <%//  }) %> 
+              <a href="#" class="btn btn-danger">Add to Favorite</a>
+              <a href="#" class="btn btn-success">I Like This</a>
+            </div>
+          </div>
+        </div>
+</div>

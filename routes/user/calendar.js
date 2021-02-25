@@ -21,7 +21,9 @@ router.get('/', isLoggedIn, (req, res) => {
             // console.log(foundRecipes[0].recipes);  
             const dayArray = [];
             for (let item in foundRecipes[0].recipes) {
-                dayArray.push(foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day);
+                if(foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day) {
+                    dayArray.push(foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day);
+                }
             }
             // console.log(dayArray);
             res.render('user/calendar.ejs', {

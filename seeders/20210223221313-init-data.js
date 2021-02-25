@@ -430,7 +430,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        stepNumber: 3,
+        stepNumber:3,
         step: 'Add lentils, tomato, and salt and cook until heated through, about 2 minutes.',
         recipeId: 3,
         createdAt: new Date(),
@@ -462,6 +462,27 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
+        userId: 1,
+        recipeId: 2,
+        day: 2,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        userId: 1,
+        recipeId: 4,
+        day: 3,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },      
+      {
+        userId: 1,
+        recipeId: 3,
+        day: null,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
         userId: 3,
         recipeId: 2,
         day: 2,
@@ -482,13 +503,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      {
-        userId: 1,
-        recipeId: 3,
-        day: null,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
+
     ], {returning: true});
     console.log('bulk insert: ', bulkFavorites);
   },

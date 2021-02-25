@@ -1,11 +1,22 @@
 <h1>Your meals here</h1>
 
+<% console.log("////////", day) %>
+
+<% day.sort((a,b) => a-b) %> 
+<% console.log("^^^^^^^^", day) %>
+
 <%recipesList.forEach((recipe, index)=> { %>
     <div>
-        <% console.log(">>>>>>>>", day[index]) %> 
+        <% console.log(">>>>>>>>", day) %>
+        <% console.log("*********", day[index]) %>
+        
         <% if (day[index] === 1) { %>
             Monday:
         <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
+        <% if (day[index] === 2) { %>
+            Tuesday:
+        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+        <% }%>
     </div>
-<% }) %>
+<% }) %> 

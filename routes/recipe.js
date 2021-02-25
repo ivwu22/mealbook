@@ -7,12 +7,22 @@ const router = express.Router()
 //GET all recipes 
 
 router.get('/', (req,res) => {
-    db.recipe.findAll()
-    .then((recipes) => {
-        res.render('recipe/explore', {recipes:recipes})
-    }).catch((error) => {
-        res.status(404).render('main/404')
-    })
+    if(req.user) {
+        db.recipe.findAll()
+        .then((recipes)=> {
+            res.render('recipe/explore', {recipes:recipes})
+        }).catch((error) => {
+            res.status(404).render('main/404')
+        })
+    }else{
+        db.recipe.findAll()
+        .then((recipes) => {
+            res.render('recipe/explore', {recipes:recipes})
+        }).catch((error) => {
+            res.status(404).render('main/404')
+        })
+    }
+    
 })
 
 router.get('/details/:id', (req,res) => {

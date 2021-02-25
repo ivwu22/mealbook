@@ -4,7 +4,11 @@
   <div class="card-body">
     <p class="card-text"> Serving Size: <%= recipe.servings %> </p>
     <p class="card-text"> Prep Time (in minutes): <%= recipe.preptime %> </p>
-    <a href="#" class="btn btn-danger">Add Favorite&#10084;&#65039;</a>
-    <a href="/recipe/details" class="btn btn-warning">More Details</a>
+    <form method="POST" action="/user/favorites/<%=recipe.id%>">
+      <button type="submit" class="btn btn-warning">Add to Favorites</button>
+    </form> 
+    <form method="GET" action="/recipe/details/<%=recipe.id%>">
+      <button type="submit" class="btn btn-warning">More Details</button>
+    </form>
   </div>
 </div>

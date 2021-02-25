@@ -5,13 +5,8 @@ const isLoggedIn = require('../../middleware/isLoggedIn')
 const router = express.Router();
 
 router.get('/', isLoggedIn, (req, res) => {
-    let randomRecipes = [];
-    db.recipe.findAll().then(function(foundRecipes){
-        const randomNumbers= getTwoRandom(foundRecipes.length);
-        for (let item in randomNumbers) {
-            randomRecipes.push(foundRecipes[randomNumbers[item]]);
-        }
-    })
+    const randomRecipes = loadRandomRecipes();
+    
     db.user.findOne({
         where: {
             id: req.user.id
@@ -21,7 +16,16 @@ router.get('/', isLoggedIn, (req, res) => {
     })
 })
 
-
+function loadRandomRecipes(){
+    const randomRecipes = [];
+    db.recipe.findAll().then(function(foundRecipes){
+        const randomNumbers= getTwoRandom(foundRecipes.length);
+        for (let item in randomNumbers) {
+            randomRecipes.push(foundRecipes[randomNumbers[item]]);
+        }
+    })
+    return randomRecipes;
+}
 
 function getRandomInt(min, max){
     min = Math.ceil(min);

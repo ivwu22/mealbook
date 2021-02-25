@@ -17,4 +17,8 @@ router.get('/', isLoggedIn, (req, res) => {
    })
 })
 
+router.post('/:id', isLoggedIn, (req,res)=> {
+   res.send('Hi');
+})
+
 module.exports = router;

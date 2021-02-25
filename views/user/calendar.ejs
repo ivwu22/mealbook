@@ -1,9 +1,9 @@
 <h1>Your meals here</h1>
 
-<%recipesList.forEach((recipe)=> { %>
+<%recipesList.forEach((recipe, index)=> { %>
     <div>
-        <% console.log(day) %> 
-        <% if (day) { %>
+        <% console.log(">>>>>>>>", day[index]) %> 
+        <% if (day[index]) { %>
         <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
 

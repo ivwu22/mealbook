@@ -19,9 +19,14 @@ router.get('/', isLoggedIn, (req, res) => {
             console.log('-------------');
             // console.log(foundRecipes[0].recipes[0].dataValues.favorites.dataValues.day);      
             // console.log(foundRecipes[0].recipes);  
+            const dayArray = [];
+            for (let item in foundRecipes[0].recipes) {
+                dayArray.push(foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day);
+            }
+            // console.log(dayArray);
             res.render('user/calendar.ejs', {
                 recipesList:foundRecipes[0].recipes,
-                day:foundRecipes[0].recipes[0].dataValues.favorites.dataValues.day
+                day:dayArray
             })
         })
     }).catch((error) => {

@@ -39,7 +39,7 @@ router.get('/details/:id', (req,res) => {
         res.status(404).render('main/404')
     })
 })
-// this is a working route for searching the database by ingredient that links to the search bar 
+//this is a working route for searching the database by ingredient that links to the search bar 
 router.get('/searchByIngredient', (req, res) => {
     db.ingredient.findAll({
         where: {
@@ -58,14 +58,14 @@ router.get('/searchByIngredient', (req, res) => {
     }) 
   });
 
-  router.get('/searchByName', (req, res) => {
-    db.ingredient.findAll({
-        where: {
-            name: req.query.nameSearch
-        }, include: [db.recipe]
-    }).then(results => { 
-        res.render('partials/searchResults', {results})
-    }) 
-  });
+//   router.get('/searchByName', (req, res) => {
+//     db.ingredient.findAll({
+//         where: {
+//             name: req.query.nameSearch
+//         }, include: [db.recipe]
+//     }).then(results => { 
+//         res.render('partials/searchResults', {results})
+//     }) 
+//   });
 
 module.exports = router;

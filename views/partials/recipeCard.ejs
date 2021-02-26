@@ -4,6 +4,16 @@
   <div class="card-body">
     <p class="card-text"> Serving Size: <%= recipe.servings %> </p>
     <p class="card-text"> Prep Time (in minutes): <%= recipe.preptime %> </p>
-    <a href="#" class="btn btn-success">Add to Favorites</a>
-    <a href="/recipe/details/<%=recipe.id  %> " class="btn btn-success">Make It!</a>
+    <% if (isFavorite.includes(recipe.id)) { %>
+      <form method="POST" action="/user/favorites/<%=recipe.id%>/?_method=DELETE">
+        <button type="submit" class="btn btn-success">Remove from Favorites</button>
+      </form> 
+    <%} else {%>
+      <form method="POST" action="/user/favorites/<%=recipe.id%>">
+        <button type="submit" class="btn btn-success">Add to Favorites</button>
+      </form>
+    <% }%>
+    <form method="GET" action="/recipe/details/<%=recipe.id%>">
+      <button type="submit" class="btn btn-success">More Details</button>
+    </form>
   </div>

@@ -1,15 +1,21 @@
 <div>
-    <h2>My meal for today is:</h2>
+    
     <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+        <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          Select which day
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <button class="dropdown-item" type="button">Action</button>
-          <button class="dropdown-item" type="button">Another action</button>
-          <button class="dropdown-item" type="button">Something else here</button>
-        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Monday</a></li>
+          <li><a class="dropdown-item" href="#">Tuesday</a></li>
+          <li><a class="dropdown-item" href="#">Wednesday</a></li>
+          <li><a class="dropdown-item" href="#">Thursday</a></li>
+          <li><a class="dropdown-item" href="#">Friday</a></li>
+          <li><a class="dropdown-item" href="#">Saturday</a></li>
+          <li><a class="dropdown-item" href="#">Sunday</a></li>
+        </ul>
     </div>
+    <h2>My meal for today is:</h2>
+
 </div>
 <div>
     <h1>Check out these recipes</h1>
@@ -39,3 +45,4 @@
     </form>
 </div>
 
+<script src="/js/dashboard.js"></script>

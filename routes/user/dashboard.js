@@ -9,6 +9,7 @@ const router = express.Router();
 // Routes
 router.get('/', isLoggedIn, (req, res) => {
     const randomRecipes = loadRandomRecipes();
+    const recipesForDay = loadRecipesForDay(req);
     db.user.findOne({
         where: {
             id: req.user.id
@@ -18,7 +19,7 @@ router.get('/', isLoggedIn, (req, res) => {
         for(let item in foundUser.recipes) {
             favoriteRecipeId.push(foundUser.recipes[item].dataValues.id)
         }
-        res.render('user/dashboard', {userFavorites:foundUser.recipes, recipes:randomRecipes, isFavorite: favoriteRecipeId})
+        res.render('user/dashboard', {userFavorites:foundUser.recipes, recipes:randomRecipes, isFavorite: favoriteRecipeId, recipesForEachDay:recipesForDay})
     })
 })
 
@@ -28,8 +29,19 @@ router.get('/', isLoggedIn, (req, res) => {
 
 // Helper functions for routes
 
-function loadRecipesForDay(){
-    const favoritedByDays = [];
+function loadRecipesForDay(req){
+    const favoritedByDays = [false, false, false, false, false, false, false];
+    db.user.findOne({
+        where:{
+            id: req.user.id
+        }, include:[db.recipe]
+    }).then(function(foundUser){
+        for (let i = 0; i < 7; i++) {
+            if ((i+1) ===foundUser.recipes[i].dataValues.favorites.dataValues.day) {
+                favoritedByDays[i]=foundUser.recipes[i]
+            }
+        }
+    })
     
     return favoritedByDays
 }

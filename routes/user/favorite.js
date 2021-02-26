@@ -20,7 +20,6 @@ router.get('/', isLoggedIn, (req, res) => {
          favoriteRecipeId.push(foundUser.recipes[item].dataValues.id)
       }
       res.render('user/favorites.ejs', {favoritesList:foundUser.recipes, isFavorite: favoriteRecipeId})
-      
    })
 })
 

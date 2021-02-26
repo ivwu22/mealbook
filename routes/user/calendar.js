@@ -39,4 +39,7 @@ router.get('/', isLoggedIn, (req, res) => {
         res.status(404).render('main/404')
     })
 })
+
+router.get('/add/:idx')
+
 module.exports = router;

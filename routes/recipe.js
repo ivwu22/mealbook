@@ -21,16 +21,17 @@ router.get('/details/:id', (req,res) => {
             id: req.params.id
         }
     })
-    .then((recipes) => {
+    .then(recipes => {
         db.instruction.findAll({
             where: {
                 recipeId : req.params.id
             }
-        }).then((instructions) => {
+        }).then(instructions => {
             const recipeDeets = {
-                instructions:instructions,
+                instructions: instructions,
                 recipes: recipes
             }
+        }).then((ingredients) => {ingredients
             res.render('recipe/details', {recipeDeets})
         })
 
@@ -38,5 +39,33 @@ router.get('/details/:id', (req,res) => {
         res.status(404).render('main/404')
     })
 })
+// this is a working route for searching the database by ingredient that links to the search bar 
+router.get('/searchByIngredient', (req, res) => {
+    db.ingredient.findAll({
+        where: {
+            name: req.query.ingredientSearch
+        }, include: [db.recipe]
+    }).then(results => { 
+        for (let i = 0; i < results.length; i++) {
+        db.recipe.findOne({
+            where: {
+                id: results[0].dataValues.recipeId
+            }
+        }).then(foundRecipe => {
+            res.render('partials/searchResults', {recipe:foundRecipe})
+        })
+    }   
+    }) 
+  });
+
+  router.get('/searchByName', (req, res) => {
+    db.ingredient.findAll({
+        where: {
+            name: req.query.nameSearch
+        }, include: [db.recipe]
+    }).then(results => { 
+        res.render('partials/searchResults', {results})
+    }) 
+  });
 
 module.exports = router;

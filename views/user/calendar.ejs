@@ -5,25 +5,37 @@
 <% day.sort((a,b) => a-b) %> 
 <% console.log("^^^^^^^^", day) %>
 
-<%recipesList.forEach((recipe, index)=> { %>
+<% recipesList.forEach((recipe, index)=> { %>
     <div>
         <% console.log(">>>>>>>>", day) %>
         <% console.log("*********", day[index]) %>
         
         <% if (day[index] === 1) { %>
-            Monday:
+            <h2>Monday:</h2>
         <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
         <% if (day[index] === 2) { %>
-            Tuesday:
+            <h2>Tuesday:</h2>
         <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
         <% if (day[index] === 3) { %>
-            Wednesday:
+            <h2>Wednesday:</h2>
         <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
         <% if (day[index] === 4) { %>
-            Thursday:
+            <h2>Thursday:</h2>
+        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+        <% }%>
+        <% if (day[index] === 5) { %>
+            <h2>Friday:</h2>
+        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+        <% }%>
+        <% if (day[index] === 6) { %>
+            <h2>Saturday:</h2>
+        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+        <% }%>
+        <% if (day[index] === 7) { %>
+            <h2>Sunday:</h2>
         <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
     </div>

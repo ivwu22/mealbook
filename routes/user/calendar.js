@@ -5,7 +5,7 @@ const router = express.Router();
 const isLoggedIn = require('../../middleware/isLoggedIn')
 
 router.get('/', isLoggedIn, (req, res) => {
-    console.log('the user is:', req.user.id);
+    // console.log('the user is:', req.user.id);
     db.user.findOne({
         where: {
             id:req.user.id,
@@ -16,12 +16,16 @@ router.get('/', isLoggedIn, (req, res) => {
                 id: 1
             }, include: [db.recipe]
         }).then((foundRecipes) => {
-            console.log('-------------');
+            // console.log('-------------');
             // console.log(foundRecipes[0].recipes[0].dataValues.favorites.dataValues.day);      
-            // console.log(foundRecipes[0].recipes);  
+            // console.log(foundRecipes[0].recipes);
+            // console.log(foundRecipes[0].recipes[0].dataValues.favorites.dataValues);
+            // console.log('test', foundRecipes[0].recipes[2].dataValues.favorites.dataValues);
             const dayArray = [];
             for (let item in foundRecipes[0].recipes) {
-                dayArray.push(foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day);
+                if(foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day) {
+                    dayArray.push(foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day);
+                }
             }
             // console.log(dayArray);
             res.render('user/calendar.ejs', {

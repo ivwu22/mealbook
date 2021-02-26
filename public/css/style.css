@@ -11,6 +11,7 @@ h1 {
 
 body {
   background-color: rgba(232, 250, 232, 0.377);
+  justify-content: center;
   align-items: center;
   text-align: center;
 }
@@ -19,16 +20,15 @@ li {
   padding: 5px;
 }
 
-.card-body, .card, {
-  font-family: Georgia, Times, 'Times New Roman', serif;
-  background-color:rgb(33, 182, 19);
-  color:rgb(213, 238, 180);
+.card-body, .card {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin:3px;
+  margin: 3px;
   padding: 5px;
-  border-radius: 15%;
+  font-family: Georgia, Times, 'Times New Roman', serif;
+  background-color:rgb(215, 247, 212);
+  color:rgb(43, 56, 26);
 }
 
 div {

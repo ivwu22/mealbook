@@ -80,17 +80,6 @@ router.get('/searchByIngredient', (req, res) => {
     }) 
   });
 
-<<<<<<< HEAD
-//   router.get('/searchByName', (req, res) => {
-//     db.ingredient.findAll({
-//         where: {
-//             name: req.query.nameSearch
-//         }, include: [db.recipe]
-//     }).then(results => { 
-//         res.render('partials/searchResults', {results})
-//     }) 
-//   });
-=======
   router.get('/searchByName', (req, res) => {
     db.ingredient.findAll({
         where: {
@@ -100,6 +89,5 @@ router.get('/searchByIngredient', (req, res) => {
         res.render('recipe/searchResults', {results})
     }) 
   });
->>>>>>> submain
 
 module.exports = router;

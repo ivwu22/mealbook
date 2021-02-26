@@ -6,8 +6,20 @@
       <li><a href="/auth/signup">Signup</a></li>
       <li><a href="/auth/login">Login</a></li>
       <% } else { %>
-          <li><a href="/auth/logout">Logout</a></li>
-          <li><a href="/profile">Profile</a></li>
+          <li class="nav-item">
+            <a href="/auth/logout">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a href="/user/dashboard">User Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a href="/profile">Profile</a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="/user/favorites">My favorites</a>
+          </li>
+          
           <% } %>
       </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,14 +37,7 @@
           <a class="nav-link" href="#">About Us</a>
         </li>
       </ul>
-      <form method="GET" action="/recipe/searchbyName"class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search By Name" aria-label="Search" id="searchByName" name="nameSearch">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-      <form method="GET" action="/recipe/searchByIngredient"class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Ingredient Search" aria-label="Search" id="searchByIngredient" name="ingredientSearch">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      
     </div>
   </div>
 </nav>

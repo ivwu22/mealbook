@@ -1,26 +1,36 @@
 <div>
-    <h2>How To Make It!</h2>
-    <hr>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><%= recipeDeets.recipes.dataValues.name %> </h5>
-            <img src="<%= recipeDeets.recipes.dataValues.picture %> " alt="yummy photo of recipe">
-            <ul>
-              <li> Ingredients                   How Much</li>
-              <%  ingredients.ingredients.forEach(ingredients => ) { %> 
-              <li> <%= ingredients.dataValues.name %> <%= ingredients.dataValues.quantity %> </li>
-                <% } %> 
-            </ul>  
-            <ol>
-                  <% recipeDeets.instructions.forEach(instruction => { %>
-                      <li> <%= instruction.dataValues.stepNumber %>. <%= instruction.dataValues.step %></li>
-                  <% }) %>
-              </ol>
-            <a href="#" class="btn btn-success">Add to Favorites &#128156;</a>
-            <a href="#" class="btn btn-success">I Like This</a>
-          </div>
+  <h2>How To Make It!</h2>
+  <hr>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= recipe.name %> </h5>
+          <img src="<%= recipe.picture %> " alt="yummy photo of recipe">
+          <ul>
+            <li> Ingredients                   How Much</li>
+            <%  ingredients.forEach(ingredients =>  { %> 
+            <li> <%= ingredients.dataValues.name %> <%= ingredients.dataValues.quantity %> </li>
+              <% }) %> 
+          </ul>  
+          <ol>
+              <% instructions.forEach(instruction => { %>
+                  <li> <%= instruction.dataValues.stepNumber %>. <%= instruction.dataValues.step %></li>
+              <% }) %>
+          </ol>
+            <% if (isFavorite) { %>
+              <% if (isFavorite.includes(recipe.id)) { %>
+                <form method="POST" action="/user/favorites/<%=recipe.id%>/?_method=DELETE">
+                  <button type="submit" class="btn btn-success">Remove from Favorites</button>
+                </form> 
+              <% } else { %>
+                <form method="POST" action="/user/favorites/<%=recipe.id%>">
+                  <button type="submit" class="btn btn-success">Add to Favorites</button>
+                </form>
+              <% } %>
+            <% } %>
         </div>
       </div>
+    </div>
 </div>
+

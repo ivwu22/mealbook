@@ -9,7 +9,7 @@ const router = express.Router();
 // Routes
 router.get('/', isLoggedIn, (req, res) => {
     const randomRecipes = loadRandomRecipes();
-    const recipesForDay = loadRecipesForDay(req); 
+    // const recipesForDay = loadRecipesForDay(req); , recipesForEachDay:recipesForDay
     db.user.findOne({
         where: {
             id: req.user.id
@@ -19,7 +19,7 @@ router.get('/', isLoggedIn, (req, res) => {
         for(let item in foundUser.recipes) {
             favoriteRecipeId.push(foundUser.recipes[item].dataValues.id)
         }
-        res.render('user/dashboard', {userFavorites:foundUser.recipes, recipes:randomRecipes, isFavorite: favoriteRecipeId, recipesForEachDay:recipesForDay})
+        res.render('user/dashboard', {userFavorites:foundUser.recipes, recipes:randomRecipes, isFavorite: favoriteRecipeId})
     })
 })
 

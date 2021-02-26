@@ -5,5 +5,5 @@
     <p class="card-text"> Serving Size: <%= recipe.servings %> </p>
     <p class="card-text"> Prep Time (in minutes): <%= recipe.preptime %> </p>
     <a href="#" class="btn btn-success">Add to Favorites</a>
-    <a href="/recipe/details/:id" class="btn btn-success">Make It!</a>
+    <a href="/recipe/details/<%=recipe.id  %> " class="btn btn-success">Make It!</a>
   </div>

@@ -9,9 +9,9 @@
             <img src="<%= recipeDeets.recipes.dataValues.picture %> " alt="yummy photo of recipe">
             <ul>
               <li> Ingredients                   How Much</li>
-              <%  ingredients.ingredients.forEach(ingredients => ) { %> 
+              <%  ingredients.ingredients.forEach(ingredients => { %> 
               <li> <%= ingredients.dataValues.name %> <%= ingredients.dataValues.quantity %> </li>
-                <% } %> 
+                <% }) %> 
             </ul>  
             <ol>
                   <% recipeDeets.instructions.forEach(instruction => { %>

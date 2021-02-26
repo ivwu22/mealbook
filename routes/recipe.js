@@ -32,7 +32,7 @@ router.get('/details/:id', (req,res) => {
                 recipes: recipes
             }
         }).then((ingredients) => {ingredients
-            res.render('recipe/details', {recipeDeets})
+            res.render('recipe/details', {recipeDeets:ingredients})
         })
 
     }).catch((error) => {
@@ -56,9 +56,9 @@ router.get('/searchByIngredient', (req, res) => {
         })
     }   
     }) 
-  });
+});
 
-  router.get('/searchByName', (req, res) => {
+router.get('/searchByName', (req, res) => {
     db.ingredient.findAll({
         where: {
             name: req.query.nameSearch
@@ -66,6 +66,6 @@ router.get('/searchByIngredient', (req, res) => {
     }).then(results => { 
         res.render('partials/searchResults', {results})
     }) 
-  });
+});
 
 module.exports = router;

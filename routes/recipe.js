@@ -7,12 +7,34 @@ const router = express.Router()
 //GET all recipes 
 
 router.get('/', (req,res) => {
-    db.recipe.findAll()
-    .then((recipes) => {
-        res.render('recipe/explore', {recipes:recipes})
-    }).catch((error) => {
-        res.status(404).render('main/404')
-    })
+    if(req.user) {
+        db.recipe.findAll()
+        .then((recipes)=> {
+            db.favorites.findAll({
+                where:{
+                    userId: req.user.id
+                }
+            }).then(function (foundFavorites){
+                const favoriteRecipeId=[];
+                for (let item in foundFavorites){
+                    favoriteRecipeId.push(foundFavorites[item].recipeId)
+                }
+                console.log("Recipe page favorite recipe IDs>>>>>",favoriteRecipeId);
+                res.render('recipe/explore', {recipes:recipes, isFavorite:favoriteRecipeId})
+            })
+            
+        }).catch((error) => {
+            res.status(404).render('main/404')
+        })
+    }else{
+        db.recipe.findAll()
+        .then((recipes) => {
+            res.render('recipe/explore', {recipes:recipes, isFavorite:[]})
+        }).catch((error) => {
+            res.status(404).render('main/404')
+        })
+    }
+    
 })
 
 router.get('/details/:id', (req,res) => {
@@ -52,12 +74,13 @@ router.get('/searchByIngredient', (req, res) => {
                 id: results[0].dataValues.recipeId
             }
         }).then(foundRecipe => {
-            res.render('partials/searchResults', {recipe:foundRecipe})
+            res.render('recipe/searchResults', {recipe:foundRecipe})
         })
     }   
     }) 
   });
 
+<<<<<<< HEAD
 //   router.get('/searchByName', (req, res) => {
 //     db.ingredient.findAll({
 //         where: {
@@ -67,5 +90,16 @@ router.get('/searchByIngredient', (req, res) => {
 //         res.render('partials/searchResults', {results})
 //     }) 
 //   });
+=======
+  router.get('/searchByName', (req, res) => {
+    db.ingredient.findAll({
+        where: {
+            name: req.query.nameSearch
+        }, include: [db.recipe]
+    }).then(results => { 
+        res.render('recipe/searchResults', {results})
+    }) 
+  });
+>>>>>>> submain
 
 module.exports = router;

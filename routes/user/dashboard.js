@@ -4,24 +4,58 @@ const db = require('../../models');
 const isLoggedIn = require('../../middleware/isLoggedIn')
 const router = express.Router();
 
+
+
+// Routes
 router.get('/', isLoggedIn, (req, res) => {
-    let randomRecipes = [];
+    const randomRecipes = loadRandomRecipes();
+    const recipesForDay = loadRecipesForDay(req); 
+    db.user.findOne({
+        where: {
+            id: req.user.id
+        }, include:[db.recipe]
+    }).then(function(foundUser){
+        const favoriteRecipeId = [];
+        for(let item in foundUser.recipes) {
+            favoriteRecipeId.push(foundUser.recipes[item].dataValues.id)
+        }
+        res.render('user/dashboard', {userFavorites:foundUser.recipes, recipes:randomRecipes, isFavorite: favoriteRecipeId, recipesForEachDay:recipesForDay})
+    })
+})
+
+
+
+
+
+// Helper functions for routes
+
+function loadRecipesForDay(req){
+    const favoritedByDays = [false, false, false, false, false, false, false];
+    db.user.findOne({
+        where:{
+            id: req.user.id
+        }, include:[db.recipe]
+    }).then(function(foundUser){
+        for (let item in foundUser.recipes) {
+            console.log(foundUser.recipes)
+            console.log(">>>>>>>",(foundUser.recipes[item].dataValues.favorites.dataValues.day)+1)
+            favoritedByDays[(foundUser.recipes[item].dataValues.favorites.dataValues.day)+1]=foundUser.recipes[item]
+        }
+        return favoritedByDays
+    })
+    
+}
+
+function loadRandomRecipes(){
+    const randomRecipes = [];
     db.recipe.findAll().then(function(foundRecipes){
         const randomNumbers= getTwoRandom(foundRecipes.length);
         for (let item in randomNumbers) {
             randomRecipes.push(foundRecipes[randomNumbers[item]]);
         }
     })
-    db.user.findOne({
-        where: {
-            id: req.user.id
-        }, include:[db.recipe]
-    }).then(function(foundUser){
-        res.render('user/dashboard', {userFavorites:foundUser.recipes, recipes:randomRecipes})
-    })
-})
-
-
+    return randomRecipes;
+}
 
 function getRandomInt(min, max){
     min = Math.ceil(min);
@@ -37,6 +71,8 @@ function getTwoRandom(max){
     }
     return randomNumbers;
 }
+
+//
 
 
 module.exports = router;

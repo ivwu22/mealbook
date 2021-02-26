@@ -1,11 +1,10 @@
 //route for recipes
 
+//route for recipes
 const express = require('express')
 const db = require('../models')
 const router = express.Router()
-
 //GET all recipes 
-
 router.get('/', (req,res) => {
     if(req.user) {
         db.recipe.findAll()

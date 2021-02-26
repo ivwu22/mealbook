@@ -1,40 +1,84 @@
 <h1>Your meals here</h1>
 
 <% console.log("////////", day) %>
-
+<% const days = [] %>
+<h2>Monday</h2>
+<h2>Monday</h2>
+<h2>Monday</h2>
+<h2>Monday</h2>
+<h2>Monday</h2>
+<h2>Monday</h2>
+<h2>Monday</h2>
 <% day.sort((a,b) => a-b) %> 
 
 <% recipesList.forEach((recipe, index)=> { %>
     <div>
-        <% console.log("*********", day[index]) %>
         
-        <% if (day[index] === 1) { %>
+        <% console.log("*********", day[index]) %>
+        <% console.log("??????????", days) %>    
+        <% console.log("!!!", days) %>    
+        
+        <% if (!days.includes(1)) {%> 
+            <% days.push(1) %>
+            <h1>Monday:</h1>
+        <%}%> 
+        <% if(day[index] === 1) { %> 
             <h2>Monday:</h2>
-        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+            <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
-        <% if (day[index] === 2) { %>
+
+        <% if (!days.includes(2)) {%> 
+            <% days.push(2) %>
+            <h1>Tuesday:</h1>
+        <%}%> 
+        <% if(day[index] === 2) { %> 
             <h2>Tuesday:</h2>
-        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+            <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
-        <% if (day[index] === 3) { %>
+
+        <% if (!days.includes(3)) {%> 
+            <% days.push(3) %>
+            <h1>Wednesday:</h1>
+        <%}%> 
+        <% if(day[index] === 3) { %> 
             <h2>Wednesday:</h2>
-        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+            <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
-        <% if (day[index] === 4) { %>
+
+        <% if (!days.includes(4) {%> 
+            <% days.push(4) %>
+            <h1>Thursday:</h1>
+        <%}%> 
+        <% if(day[index] === 4) { %> 
             <h2>Thursday:</h2>
-        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+            <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
-        <% if (day[index] === 5) { %>
+
+        <% if (!days.includes(5)) {%> 
+            <% days.push(5) %>
+            <h1>Friday:</h1>
+        <%}%> 
+        <% if(day[index] === 5) { %> 
             <h2>Friday:</h2>
-        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+            <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
-        <% if (day[index] === 6) { %>
+
+        <% if (!days.includes(6)) {%> 
+            <% days.push(6) %>
+            <h1>Saturday:</h1>
+        <%}%> 
+        <% if(day[index] === 6) { %> 
             <h2>Saturday:</h2>
-        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+            <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
-        <% if (day[index] === 7) { %>
+
+        <% if (!days.includes(7)) {%> 
+            <% days.push(7) %>
+            <h1>Sunday:</h1>
+        <%}%> 
+        <% if(day[index] === 7) { %> 
             <h2>Sunday:</h2>
-        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+            <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
     </div>
-<% }) %> 
+<% )} %> 

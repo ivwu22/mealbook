@@ -30,7 +30,8 @@ router.get('/', isLoggedIn, (req, res) => {
             // console.log(dayArray);
             res.render('user/calendar.ejs', {
                 recipesList:foundRecipes[0].recipes,
-                day:dayArray
+                day:dayArray,
+                isFavorite: null,
             })
         })
     }).catch((error) => {

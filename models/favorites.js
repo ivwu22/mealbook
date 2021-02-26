@@ -11,10 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-    
     }
   };
   favorites.init({
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+  },
     userId: DataTypes.INTEGER,
     recipeId: DataTypes.INTEGER,
     day: DataTypes.INTEGER

@@ -1,6 +1,5 @@
 'use strict';
 const bcrypt = require("bcrypt")
-
 const {
   Model
 } = require('sequelize');
@@ -15,14 +14,12 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       models.user.belongsToMany(models.recipe, {through:"favorites"})
     }
-
     // validPassword
     validPassword(plainTextPassword) {
       // validate the plaintextpassword against the hash in the DB 
       // and return a boolean
       return bcrypt.compareSync(plainTextPassword, this.password) 
     }
-
     // toJSON
     toJSON() {
       let userData = this.get()
@@ -61,7 +58,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'user',
   });
-
   // Hooks - moments in time where we can trigger specific functionality
   user.beforeCreate((pendingUser, options) => {
     // check that a pending user and their pw exists
@@ -72,6 +68,5 @@ module.exports = (sequelize, DataTypes) => {
       pendingUser.password = hash;
     }
   });
-
   return user;
 };

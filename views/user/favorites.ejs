@@ -2,6 +2,6 @@
 
 <%favoritesList.forEach(favorite=> { %>
     <div>
-        <%- include('../partials/recipeCard', {recipe:favorite}) %>
+        <%- include('../partials/recipeCard', {recipe:favorite, isFavorite:isFavorite}) %>
     </div>
 <% }) %>

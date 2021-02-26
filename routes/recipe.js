@@ -74,7 +74,7 @@ router.get('/searchByIngredient', (req, res) => {
                 id: results[0].dataValues.recipeId
             }
         }).then(foundRecipe => {
-            res.render('partials/searchResults', {recipe:foundRecipe})
+            res.render('recipe/searchResults', {recipe:foundRecipe})
         })
     }   
     }) 
@@ -86,7 +86,7 @@ router.get('/searchByIngredient', (req, res) => {
             name: req.query.nameSearch
         }, include: [db.recipe]
     }).then(results => { 
-        res.render('partials/searchResults', {results})
+        res.render('recipe/searchResults', {results})
     }) 
   });
 

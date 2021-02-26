@@ -31,7 +31,7 @@ router.get('/', isLoggedIn, (req, res) => {
             res.render('user/calendar.ejs', {
                 recipesList:foundRecipes[0].recipes,
                 day:dayArray,
-                isFavorite: null,
+                isFavorite:null
             })
         })
     }).catch((error) => {

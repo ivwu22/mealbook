@@ -18,5 +18,13 @@
             Tuesday:
         <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% }%>
+        <% if (day[index] === 3) { %>
+            Wednesday:
+        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+        <% }%>
+        <% if (day[index] === 4) { %>
+            Thursday:
+        <%- include('../partials/recipeCard', {recipe:recipe}) %>
+        <% }%>
     </div>
 <% }) %> 

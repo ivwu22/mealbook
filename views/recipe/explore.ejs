@@ -3,12 +3,9 @@
 <h1>Explore recipes to find what to cook!</h1>
 <hr>
 
-<form method="GET" action="/recipe/searchbyName"class="d-flex">
-    <input class="form-control me-2" type="search" placeholder="Search By Name" aria-label="Search" id="searchByName" name="nameSearch">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-</form>
-<form method="GET" action="/recipe/searchByIngredient"class="d-flex">
-    <input class="form-control me-2" type="search" placeholder="Ingredient Search" aria-label="Search" id="searchByIngredient" name="ingredientSearch">
+<form method="GET" action="/recipe">
+    <label for="nameFilter">Filter by Name</label>
+    <input id="nameFilter" type="text" name="nameFilter">
     <button class="btn btn-outline-success" type="submit">Search</button>
 </form>
 

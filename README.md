@@ -1,11 +1,31 @@
 # Project 2
 
 ## Project Description
-Our application will allow users to plan their meals for the next 7 days. With working from home on the rise and restrictions on dining at restaurants, cooking at home has become a routine in many people’s lives. Oftentimes it is hard to plan your grocery haul and what to eat for the next day, but this application will help users find recipes, favorite those that they like, plan the meals out, and have a shopping list generated!  
-We will be using the following API to load our databases with the delicious food: https://rapidapi.com/spoonacular/api/recipe-food-nutrition/endpoints
+Our application will allow users to plan their meals for the next 7 days. With working from home on the rise and restrictions on dining at restaurants, cooking at home has become a routine in many people’s lives. Oftentimes it is hard to plan your grocery haul and what to eat for the next day, but this application will help users find recipes, favorite those that they like and plan the meals out!  
+We used the following API to load our databases with delicious food: https://rapidapi.com/spoonacular/api/recipe-food-nutrition/endpoints
 
-## Wireframes
+## List of the Technologies Used
+* HTML
+* CSS
+* Javascript
+* Bootstrap
+* Express
+* EJS
+* EJS-Layouts
+* Express-Passport
+* Node.js
+* Axios
+* SQL
+* Sequelize
+* PostgresSQL
 
+## Installation Instructions
+#### 1. Install NPM dependencies
+npm install
+#### 2. Create database and seed it
+createdb mealplan
+sequelize db:migrate
+sequelize db:seed:all
 
 ## User Stories
 
@@ -14,12 +34,17 @@ We will be using the following API to load our databases with the delicious food
 * AAU I’d want to be able to view all the recipes on one page.
 * AAU I'd want to be able to favorite recipes and refer back to the list.
 
+## Screenshots
 
-## Default Routes
+## Wireframes
+![Wireframe Dashboard](img/wireframeDashboard.png)
+![Wireframe Database](img/wireframeDatabase.png)
+![Wireframe User Flow](img/wireframeUserFlow.png)
 
-## Installation Instructions
+## Unsolved problems/Major Hurdles
 
-#### 1. Install NPM dependencies
-#### 2.
+
+## Future Development
+
 
 

@@ -4,42 +4,55 @@ const db = require('../../models');
 const router = express.Router();
 const isLoggedIn = require('../../middleware/isLoggedIn')
 
+// router.get('/', isLoggedIn, (req, res) => {
+//     // console.log('the user is:', req.user.id);
+//     db.user.findOne({
+//         where: {
+//             id: req.user.id,
+//         }, include: [db.recipe]
+//     }).then((foundUser) => {
+//         db.sequelize.query(
+//             `SELECT * FROM favorites
+//             WHERE userId = ${req.user.id}`
+//         )
+//         }).then((foundRecipes) => {
+//             console.log('!!!!!',foundRecipes[0].recipes)
+//             console.log('******',foundRecipes[0].recipes[2].dataValues)
+//             const dayArray = [];
+//             for (let item in foundRecipes[0].recipes) {
+//                 if (foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day) {
+//                     dayArray.push(foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day);
+//                 }
+//             }
+//             // console.log(dayArray);
+//             res.render('user/calendar.ejs', {
+//                 recipesList: foundRecipes[0].recipes,
+//                 day: dayArray,
+//                 isFavorite: null
+//             })
+//         })
+//     }).catch((error) => {
+//         console.log(error);
+//         res.status(404).render('main/404')
+//     })
+
 router.get('/', isLoggedIn, (req, res) => {
-    // console.log('the user is:', req.user.id);
-    db.user.findOne({
-        where: {
-            id: req.user.id,
-        }, include: [db.recipe]
-    }).then((foundUser) => {
-        db.user.findAll({
-            where: {
-                id: 1
-            }, include: [db.recipe]
-        }).then((foundRecipes) => {
-            // console.log('-------------');
-            // console.log(foundRecipes[0].recipes[0].dataValues.favorites.dataValues.day);      
-            // console.log(foundRecipes[0].recipes);
-            // console.log(foundRecipes[0].recipes[0].dataValues.favorites.dataValues);
-            // console.log('test', foundRecipes[0].recipes[2].dataValues.favorites.dataValues);
-            console.log('!!!!!',foundRecipes[0].recipes)
-            console.log('******',foundRecipes[0].recipes[2].dataValues)
-            const dayArray = [];
-            for (let item in foundRecipes[0].recipes) {
-                if (foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day) {
-                    dayArray.push(foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day);
+            db.sequelize.query(
+                `SELECT * FROM favorites f,recipes r WHERE f."userId" = ${req.user.id} AND f."recipeId" = r.id ORDER BY day`
+            ).then((recipes) => {
+                let dayArray = []
+                let recipeList = {}
+                for (let i = 0; i <recipes[0].length; i++) {
+                    dayArray.push(recipes[0][i].day)
                 }
-            }
-            // console.log(dayArray);
-            res.render('user/calendar.ejs', {
-                recipesList: foundRecipes[0].recipes,
-                day: dayArray,
-                isFavorite: null
+                console.log(recipes);
+                console.log('!!!!!!!', dayArray);
+                res.render('user/calendar', {
+                    day:dayArray,
+                    isFavorite:null,
+                    recipeList: recipe
+                })
             })
-        })
-    }).catch((error) => {
-        console.log(error);
-        res.status(404).render('main/404')
-    })
 })
 
 router.get('/add/:id', isLoggedIn, async (req, res) => {

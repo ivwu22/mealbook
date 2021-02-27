@@ -19,7 +19,9 @@
           <li class="nav-item">
             <a href="/user/favorites">My favorites</a>
           </li>
-          
+          <li>
+            <span>Hi <%=currentUser.name.charAt(0).toUpperCase() + currentUser.name.slice(1)%>!</span>
+          </li>
           <% } %>
       </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

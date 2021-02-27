@@ -3,8 +3,8 @@
     <a class="navbar-brand" href="/">What's For Dinner!?</a>
     <div style="list-style-type: none;">
     <% if (!currentUser) { %>
-      <li><a href="/auth/signup">Signup</a></li>
-      <li><a href="/auth/login">Login</a></li>
+      <li><%- include('./signup.ejs') %> </li>
+      <li><%- include('./login.ejs') %> </li>
       <% } else { %>
           <li class="nav-item">
             <a href="/auth/logout">Logout</a>

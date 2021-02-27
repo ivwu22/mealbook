@@ -9,10 +9,7 @@ const router = express.Router()
 router.get('/', async (req,res) => {
     try{
         const allRecipes = await db.recipe.findAll()
-        let favoriteRecipeId = [];
-        if (req.user) {
-            favoriteRecipeId = await findFavorites(req)
-        } 
+        const favoriteRecipeId = await findFavorites(req)
         const nameFilter = req.query.nameFilter;
             if(nameFilter) {
                 console.log("recipes itself is >>>>>>", allRecipes[0])

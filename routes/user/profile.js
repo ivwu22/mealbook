@@ -9,18 +9,29 @@ router.use(methodOverride('_method'));
 
 // Routes
 router.get('/', isLoggedIn, async (req, res) => {
-    const user = await db.user.findOne({where:{id:req.user.id}})
-    res.render('user/profile', {user:user});
+    try {
+        res.render('user/profile');
+    } catch (error){
+        res.render('/main/404.ejs', error)
+    }
 });
 
 router.get('/edit', isLoggedIn, async (req, res) => {
-    const user = await db.user.findOne({where:{id:req.user.id}});
-    res.render('user/profileEdit.ejs', {user:user})
+    try {
+        res.render('user/profileEdit.ejs')
+    } catch (error){
+        res.render('/main/404.ejs', error)
+    }
 })
 
 router.put('/edit/:id', isLoggedIn, async (req, res) => {
-    const userUpdate = await db.user.update({name:req.body.name.toLowerCase(), email:req.body.email},{where:{id:req.user.id}})
-    res.redirect('/user/profile');
+    try {
+        const userUpdate = await db.user.update({name:req.body.name.toLowerCase(), email:req.body.email, password:req.body.password},{where:{id:req.user.id}})
+        res.redirect('/user/profile');
+    } catch (error){
+        res.render('/main/404.ejs', error)
+    }
+    
 })
 
 

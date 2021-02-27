@@ -42,9 +42,7 @@ app.use((req, res, next) => {
 })
 
 app.get('/info', (req, res)=>{
-  
-
-  var options1 = {
+  const options1 = {
     method: 'GET',
     url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/649850/analyzedInstructions',
     params: {stepBreakdown: 'true'},
@@ -65,9 +63,8 @@ app.get('/', (req, res) => {
   res.render('main/index');
 });
 
-            
 
-app.use('/user/profile', require('./routes/user/profile.js'))
+app.use('/user/profile', require('./routes/user/profile.js'));
 app.use('/auth', require('./routes/auth'));
 app.use('/recipe', require('./routes/recipe'));
 app.use('/user/favorites', require('./routes/user/favorite.js'));

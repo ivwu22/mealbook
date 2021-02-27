@@ -2,7 +2,8 @@
 
 <h3>Welcome to your PROFILE</h3>
 
-<p>Your name is <%=user.name.charAt(0).toUpperCase() + user.name.slice(1)%></p>
+<p>Name: <%=currentUser.name.charAt(0).toUpperCase() + currentUser.name.slice(1)%></p>
+<p>Email: <%= currentUser.email %> </p>
 <form method="Get" action="/user/profile/edit">
-    <button type="submit">Edit</button>
+    <button type="submit">Edit your info</button>
 </form>

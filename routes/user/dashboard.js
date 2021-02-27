@@ -7,20 +7,16 @@ const router = express.Router();
 
 
 // Routes
-router.get('/', isLoggedIn, (req, res) => {
-    const randomRecipes = loadRandomRecipes();
-    // const recipesForDay = loadRecipesForDay(req); , recipesForEachDay:recipesForDay
-    db.user.findOne({
-        where: {
-            id: req.user.id
-        }, include:[db.recipe]
-    }).then(function(foundUser){
-        const favoriteRecipeId = [];
-        for(let item in foundUser.recipes) {
-            favoriteRecipeId.push(foundUser.recipes[item].dataValues.id)
-        }
-        res.render('user/dashboard', {userFavorites:foundUser.recipes, recipes:randomRecipes, isFavorite: favoriteRecipeId})
-    })
+router.get('/', isLoggedIn, async (req, res) => {
+    try{
+        // const recipesForDay = loadRecipesForDay(req); , recipesForEachDay:recipesForDay
+        const user = await db.user.findOne({where: {id: req.user.id}, include:[db.recipe]});
+        const favoriteRecipeId = await findFavorites(req);
+        const randomRecipes = await loadRandomRecipes(favoriteRecipeId);
+        res.render('user/dashboard', {userFavorites:user.recipes, recipes:randomRecipes, isFavorite: favoriteRecipeId})
+    } catch (error){
+        res.render('/main/404.ejs', error)
+    }
 })
 
 
@@ -43,15 +39,33 @@ function loadRecipesForDay(req){
     
 }
 
-function loadRandomRecipes(){
-    const randomRecipes = [];
-    db.recipe.findAll().then(function(foundRecipes){
-        const randomNumbers= getTwoRandom(foundRecipes.length);
-        for (let item in randomNumbers) {
-            randomRecipes.push(foundRecipes[randomNumbers[item]]);
+async function loadRandomRecipes(favoriteRecipeId){
+    try {
+        const randomRecipes = [];
+        const recipes = await db.recipe.findAll();
+        const randomNumbers = getTwoRandom(recipes.length, favoriteRecipeId);
+        for (let item in randomNumbers){
+            randomRecipes.push(recipes[randomNumbers[item]]);
         }
-    })
-    return randomRecipes;
+        return randomRecipes;
+    } catch (error){
+        res.render('/main/404.ejs', error)
+    }
+}
+
+async function findFavorites(req){
+    try {
+        const favoriteRecipeId=[];
+        if(req.user){
+            const favorites = await db.favorites.findAll({where:{userId:req.user.id}})
+            for (let item in favorites){
+                favoriteRecipeId.push(favorites[item].recipeId)
+            }
+        } 
+        return favoriteRecipeId;
+    } catch (error){
+        res.render('/main/404.ejs', error)
+    }
 }
 
 function getRandomInt(min, max){
@@ -59,17 +73,35 @@ function getRandomInt(min, max){
     max= Math.floor(max);
     return Math.floor(Math.random()*(max-min)+min);
 }
-function getTwoRandom(max){
+
+
+function getTwoRandom(max, favoriteRecipeId){
     const randomNumbers= [];
-    randomNumbers.push(getRandomInt(0,max))
-    randomNumbers.push(getRandomInt(0,max))
-    while(randomNumbers[0]===randomNumbers[1]){
-        randomNumbers[1]=getRandomInt(0,max)
+    // Push two random numbers onto the array
+    randomNumbers.push(getRandomInt(0,max));
+    randomNumbers.push(getRandomInt(0,max));
+    // If the random recipe id in index 0 is already in favorites, and if we haven't looped it over a 100 times yet, change the first random number
+    let key = 0;
+    while(favoriteRecipeId.includes(randomNumbers[0]) && key <= 100) {
+        randomNumbers[0]=getRandomInt(0,max);
+        key++;
     }
+    // If the random recipe id in index 1 is already in favorites or if the first and second number in the array are the same, AND if the number of times we have looped is less than a hundred, change the second random number
+    key = 0;
+    while((favoriteRecipeId.includes(randomNumbers[1]) || randomNumbers[0]===randomNumbers[1]) && key <= 100){
+        randomNumbers[1]=getRandomInt(0,max);
+        key++;
+    }
+    // After the looping, if either of the recipe ids are already favorited, remove them from the array
+    if (favoriteRecipeId.includes(randomNumbers[0])) {
+        randomNumbers.shift();
+    } else if (favoriteRecipeId.includes(randomNumbers[1])) {
+        randomNumbers.pop();
+    } 
     return randomNumbers;
 }
 
-//
+// 
 
 
 module.exports = router;

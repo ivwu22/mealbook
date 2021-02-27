@@ -140,14 +140,6 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        name: 'Seared Tuna Pepper Steaks',
-        picture: 'https://spoonacular.com/recipeImages/seared-tuna-pepper-steaks-2-89560.png',
-        servings: 4,
-        preptime: 45,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      },
-      {
         name: 'Shrimp and Corn Salad',
         picture: 'https://spoonacular.com/recipeImages/shrimp-and-corn-salad-13423.jpg',
         servings: 8,
@@ -171,6 +163,31 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        name: 'Salmon With Rice-Florentine',
+        picture: 'https://spoonacular.com/recipeImages/salmon-with-rice-florentine-2-85336.jpg',
+        servings: 4,
+        preptime: 48,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: 'Baked Chicken and Rice',
+        picture: 'https://spoonacular.com/recipeImages/baked-chicken-and-rice-36072.jpg',
+        servings: 4,
+        preptime: 15,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        name: 'Fried Rice My Way',
+        picture: 'https://spoonacular.com/recipeImages/fried-rice-my-way-2-100482.jpg',
+        servings: 2,
+        preptime: 35,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+
     ], {returning: true});
     console.log('bulk insert: ', bulkRecipes);
 

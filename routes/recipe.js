@@ -5,49 +5,34 @@ const express = require('express')
 const db = require('../models')
 const router = express.Router()
 //GET all recipes 
-router.get('/', (req,res) => {
-    if(req.user) {
-        db.recipe.findAll()
-        .then((recipes)=> {
-            db.favorites.findAll({
-                where:{
-                    userId: req.user.id
-                }
-            }).then(function (foundFavorites){
-                const favoriteRecipeId=[];
-                for (let item in foundFavorites){
-                    favoriteRecipeId.push(foundFavorites[item].recipeId)
-                }
-                res.render('recipe/explore', {recipes:recipes, isFavorite:favoriteRecipeId})
-            })     
-        }).catch((error) => {
-            res.status(404).render('main/404')
-        })
-    }else{
-        db.recipe.findAll()
-        .then((recipes) => {
-            res.render('recipe/explore', {recipes:recipes, isFavorite:[]})
-        }).catch((error) => {
-            res.status(404).render('main/404')
-        })
+
+router.get('/', async (req,res) => {
+    try{
+        const allRecipes = await db.recipe.findAll()
+        let favoriteRecipeId = [];
+        if (req.user) {
+            favoriteRecipeId = await findFavorites(req)
+        } 
+        const nameFilter = req.query.nameFilter;
+            if(nameFilter) {
+                console.log("recipes itself is >>>>>>", allRecipes[0])
+                const recipeAsArray = Object.entries(allRecipes);
+                console.log("ARRAY OBJECT", recipeAsArray);
+                allRecipes = allRecipes.filter(function (recipeName) {
+                    return recipeName.toLowerCase() === nameFilter.toLowerCase();
+                });
+            }
+        res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId})
+    } catch(error){
+        res.status(404).render('main/404')
     }
 })
 
 router.get('/details/:id', async (req,res) => {
     const recipe = await db.recipe.findOne({where:{id:req.params.id}, include:[db.user]})
-    const ingredients= await db.ingredient.findAll({where:{recipeId:recipe.id}})
-    const instructions=await db.instruction.findAll({where:{recipeId:recipe.id}})
-    let favorites;
-    if(req.user){
-        favorites = await db.favorites.findAll({where:{userId:req.user.id}})
-    }
-    const favoriteRecipeId=[];
-    if(favorites){
-        for (let item in favorites){
-            favoriteRecipeId.push(favorites[item].recipeId)
-        }
-        
-    } 
+    const ingredients = await db.ingredient.findAll({where:{recipeId:recipe.id}})
+    const instructions = await db.instruction.findAll({where:{recipeId:recipe.id}})
+    const favoriteRecipeId = await findFavorites(req);
     res.render('recipe/details.ejs', {recipe:recipe, isFavorite:favoriteRecipeId, instructions:instructions, ingredients:ingredients})
 })
 
@@ -80,5 +65,21 @@ db.ingredient.findAll({
     res.render('recipe/searchResults', {recipe: results, isFavorite: null})
 }) 
 });
+
+
+// Helper functions for route
+async function findFavorites(req){
+    const favoriteRecipeId=[];
+    if(req.user){
+        const favorites = await db.favorites.findAll({where:{userId:req.user.id}})
+        for (let item in favorites){
+            favoriteRecipeId.push(favorites[item].recipeId)
+        }
+    } 
+    console.log(favoriteRecipeId);
+    return favoriteRecipeId;
+}
+
+
 
 module.exports = router;

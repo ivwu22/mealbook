@@ -1,25 +1,21 @@
 nav ul li {
-  
+  float:right;
   text-decoration: none;
   display: inline-block;
   margin-right: .3em;
 }
-
 h1 {
   color: rgb(146, 236, 140);
 }
-
 body {
   background-color: rgba(232, 250, 232, 0.377);
   justify-content: center;
   align-items: center;
   text-align: center;
 }
-
 li {
   padding: 5px;
 }
-
 .card-body, .card {
   justify-content: center;
   align-items: center;
@@ -30,8 +26,16 @@ li {
   background-color:rgb(215, 247, 212);
   color:rgb(43, 56, 26);
 }
-
 div {
   background-color:ivory
 }
-
+a, h1, h2, h3 {
+  color: green;
+}
+input {
+ width: 275px;
+}
+img {
+  max-width: 333px;
+  max-height: 333px;
+}

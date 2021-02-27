@@ -65,11 +65,9 @@ app.get('/', (req, res) => {
   res.render('main/index');
 });
 
-app.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
-});                
+            
 
-
+app.use('/user/profile', require('./routes/user/profile.js'))
 app.use('/auth', require('./routes/auth'));
 app.use('/recipe', require('./routes/recipe'));
 app.use('/user/favorites', require('./routes/user/favorite.js'));

@@ -6,7 +6,7 @@
   <p class="card-text"> Prep Time (in minutes): <%= recipe.preptime %> </p>
   <% if (isFavorite) { %>
     <% if (isFavorite.includes(recipe.id)) { %>
-      <a href="/calendar/add/<%= recipe.id %>">Add to calendar</a>
+      <a href="/user/calendar/add/<%= recipe.id %>">Add to calendar</a>
       <form method="POST" action="/user/favorites/<%=recipe.id%>/?_method=DELETE">
         <button type="submit" class="btn btn-success">Remove from Favorites</button>
       </form> 

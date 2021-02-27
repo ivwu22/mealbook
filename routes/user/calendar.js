@@ -8,9 +8,9 @@ router.get('/', isLoggedIn, (req, res) => {
     // console.log('the user is:', req.user.id);
     db.user.findOne({
         where: {
-            id:req.user.id,
+            id: req.user.id,
         }, include: [db.recipe]
-    }).then((foundUser)  => {
+    }).then((foundUser) => {
         db.user.findAll({
             where: {
                 id: 1
@@ -21,17 +21,19 @@ router.get('/', isLoggedIn, (req, res) => {
             // console.log(foundRecipes[0].recipes);
             // console.log(foundRecipes[0].recipes[0].dataValues.favorites.dataValues);
             // console.log('test', foundRecipes[0].recipes[2].dataValues.favorites.dataValues);
+            console.log('!!!!!',foundRecipes[0].recipes)
+            console.log('******',foundRecipes[0].recipes[2].dataValues)
             const dayArray = [];
             for (let item in foundRecipes[0].recipes) {
-                if(foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day) {
+                if (foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day) {
                     dayArray.push(foundRecipes[0].recipes[item].dataValues.favorites.dataValues.day);
                 }
             }
             // console.log(dayArray);
             res.render('user/calendar.ejs', {
-                recipesList:foundRecipes[0].recipes,
-                day:dayArray,
-                isFavorite:null
+                recipesList: foundRecipes[0].recipes,
+                day: dayArray,
+                isFavorite: null
             })
         })
     }).catch((error) => {
@@ -40,6 +42,38 @@ router.get('/', isLoggedIn, (req, res) => {
     })
 })
 
-router.get('/add/:idx')
+router.get('/add/:id', isLoggedIn, async (req, res) => {
+    const toRecipe = await db.recipe.findOne({
+        where: {
+            id: req.params.id
+        }
+    })
+    res.render('user/addCalendar', {recipe:toRecipe})
+    // db.favorites.findOrCreate({
+    //     where: {
+    //         userId: req.user.id,
+    //         recipeId: req.body.id
+    //     }, include: [db.recipe, db.user]
+    // }).then(foundUser => {
+    //     foundUser.addFavorites(req.params.id).then(() => {
+    //         req.flash('success', `You have added ${recipe.name} to your calendar!`);
+    //         res.redirect('/user/favorites');
+    //     })
+    // })
+})
 
+router.post('/add/:id', isLoggedIn, async (req,res) => {
+    console.log(req.user.id);
+    console.log(req.params.id);
+    console.log(req.body.day);
+    const toFavorites = await db.favorites.findOrCreate({
+        
+        where: {
+            userId:req.user.id,
+            recipeId: req.params.id,
+            day: parseInt(req.body.day)
+        }
+    })
+    res.redirect('/user/calendar')
+})
 module.exports = router;

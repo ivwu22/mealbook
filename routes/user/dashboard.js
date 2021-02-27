@@ -24,9 +24,6 @@ router.get('/', isLoggedIn, (req, res) => {
 })
 
 
-
-
-
 // Helper functions for routes
 
 function loadRecipesForDay(req){

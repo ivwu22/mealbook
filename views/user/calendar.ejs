@@ -4,9 +4,8 @@
 
 <% console.log("////////", day) %>
 <% day.sort((a,b) => a-b) %>
-<div></div> 
+
 <% recipesList.forEach((recipe, index)=> { %>
-    <div>
         <% console.log("*********", day[index]) %>
 
         <% if (day[index] === 1) { %>
@@ -61,7 +60,7 @@
         <%- include('../partials/recipeCard', {recipe:recipe}) %>
         <% } else if (!days.includes(6)) { %>
             <h2>Saturday</h2>
-            <% days.push(6) %> 
+            <% days.push(6) %>
             <a href="/user/favorites">Add meal here!</a>
             <% } %>
 
@@ -74,5 +73,4 @@
             <% days.push(7) %> 
             <a href="/user/favorites">Add meal here!</a>
             <% } %>
-    </div>
 <% }) %> 

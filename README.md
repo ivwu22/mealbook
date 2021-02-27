@@ -22,4 +22,10 @@ We will be using the following API to load our databases with the delicious food
 #### 1. Install NPM dependencies
 #### 2.
 
-
+A README.md file that includes the following sections:
+ An embedded screenshot of the app
+ List of the Technologies used
+ Installation instructions (if applicable)
+ Your User stories – who are your users, what do they want and why?
+ Your Wireframes – sketches of major views / interfaces in your application
+ Descriptions of any Unsolved problems or major hurdles you had to overcome

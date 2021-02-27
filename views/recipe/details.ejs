@@ -1,21 +1,21 @@
 <div>
   <h2>How To Make It!</h2>
   <hr>
-  <div class="row">
+  <div class="row" style="display: flex; flex-direction: row; justify-content: space-around;">
     <div class="col-sm-6">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title"><%= recipe.name %> </h5>
+          <h5 class="card-title" style="font-size: 34px;"><%= recipe.name %> </h5>
           <img src="<%= recipe.picture %> " alt="yummy photo of recipe">
           <ul>
-            <li> Ingredients                   How Much</li>
+            <span>You will need these ingredients:</span>
             <%  ingredients.forEach(ingredients =>  { %> 
-            <li> <%= ingredients.dataValues.name %> <%= ingredients.dataValues.quantity %> </li>
+            <li style="list-style-type: none;"><%= ingredients.dataValues.name %> - <%= ingredients.dataValues.quantity %></li>
               <% }) %> 
           </ul>  
           <ol>
               <% instructions.forEach(instruction => { %>
-                  <li> <%= instruction.dataValues.stepNumber %>. <%= instruction.dataValues.step %></li>
+                  <li><%= instruction.dataValues.step %></li>
               <% }) %>
           </ol>
             <% if (isFavorite) { %>

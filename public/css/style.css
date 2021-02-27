@@ -1,5 +1,5 @@
 nav ul li {
-  
+  float:right;
   text-decoration: none;
   display: inline-block;
   margin-right: .3em;
@@ -35,3 +35,14 @@ div {
   background-color:ivory
 }
 
+a, h1, h2, h3 {
+  color: green;
+}
+
+input {
+ width: 275px;
+}
+ img {
+   max-width: 333px;
+   max-height: 333px;
+ }

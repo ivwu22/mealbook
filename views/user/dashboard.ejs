@@ -1,15 +1,15 @@
 <div>
     
-    See what your for today is!
+    See what your meal for today is!
     <a href="/user/calendar">Calendar</a>
 
 </div>
 <div>
     <h1>Check out these recipes</h1>
     <ul>
-        <% recipes.forEach((recipe) => { %> 
+        <% recipes.forEach((recipe) => { %>
             <li style="list-style-type: none;">
-                <%- include('../partials/recipeCard', {recipe:recipe}) %> 
+                                <%- include('../partials/recipeCard', {recipe:recipe}) %> 
             </li>
         <% }) %>
     </ul>
@@ -23,7 +23,7 @@
     <ul>
         <% userFavorites.forEach((favoriteRecipe) => { %> 
             <li style="list-style-type: none;">
-                <%- include('../partials/recipeCard', {recipe:favoriteRecipe, isFavorite:isFavorite})  %> 
+                                <%- include('../partials/recipeCard', {recipe:favoriteRecipe, isFavorite:isFavorite})  %> 
             </li>
         <% }) %>
     </ul>

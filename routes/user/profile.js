@@ -28,7 +28,7 @@ router.get('/edit', isLoggedIn, async (req, res) => {
 
 router.put('/edit/:id', isLoggedIn, async (req, res) => {
     try {
-        const userUpdate = await db.user.update({name:req.body.name.toLowerCase(), email:req.body.email},{where:{id:req.user.id}})
+        const userUpdate = await db.user.update({name:req.body.name.toLowerCase(), email:req.body.email, password:req.body.password},{where:{id:req.user.id}})
         res.redirect('/user/profile');
     } catch (error){
         res.render('/main/404.ejs', error)

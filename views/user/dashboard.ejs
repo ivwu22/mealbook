@@ -7,11 +7,15 @@
 <div>
     <h1>Check out these recipes</h1>
     <ul>
-        <% recipes.forEach((recipe) => { %> 
-            <li style="list-style-type: none;">
-                <%- include('../partials/recipeCard', {recipe:recipe}) %> 
-            </li>
-        <% }) %>
+        <% if (recipes) { %>
+            <% recipes.forEach((recipe) => { %> 
+                <li style="list-style-type: none;">
+                    <%- include('../partials/recipeCard', {recipe:recipe, isFavorite:isFavorite}) %> 
+                </li>
+            <% }) %>
+        <% } else { %>
+            <li>Wow! You have favorited all the recipes! There are no more recipes in our database to check out! :O </li>
+        <% } %>
     </ul>
     <form method="GET" action="/recipe">
         <button type="submit">See more recipes</button>

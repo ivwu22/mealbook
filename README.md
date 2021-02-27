@@ -21,11 +21,15 @@ We used the following API to load our databases with delicious food: https://rap
 
 ## Installation Instructions
 #### 1. Install NPM dependencies
+```
 npm install
+```
 #### 2. Create database and seed it
+```
 createdb mealplan
 sequelize db:migrate
 sequelize db:seed:all
+```
 
 ## User Stories
 

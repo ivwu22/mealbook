@@ -41,16 +41,21 @@ router.get('/', isLoggedIn, (req, res) => {
                 `SELECT * FROM favorites f,recipes r WHERE f."userId" = ${req.user.id} AND f."recipeId" = r.id ORDER BY day`
             ).then((recipes) => {
                 let dayArray = []
-                let recipeList = {}
+                let recipesList = []
                 for (let i = 0; i <recipes[0].length; i++) {
                     dayArray.push(recipes[0][i].day)
+                    recipesList.push({
+                        id: recipes[0][i].recipeId,
+                        name: recipes[0][i].name,
+                        picture: recipes[0][i].picture,
+                        servings: recipes[0][i].servings,
+                        preptime: recipes[0][i].preptime,
+                    })
                 }
-                console.log(recipes);
-                console.log('!!!!!!!', dayArray);
                 res.render('user/calendar', {
                     day:dayArray,
                     isFavorite:null,
-                    recipeList: recipe
+                    recipesList: recipesList
                 })
             })
 })

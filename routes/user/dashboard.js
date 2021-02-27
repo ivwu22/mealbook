@@ -34,8 +34,8 @@ function loadRecipesForDay(req){
         }, include:[db.recipe]
     }).then(function(foundUser){
         for (let item in foundUser.recipes) {
-            console.log(foundUser.recipes)
-            console.log(">>>>>>>",(foundUser.recipes[item].dataValues.favorites.dataValues.day)+1)
+            // console.log(foundUser.recipes)
+            // console.log(">>>>>>>",(foundUser.recipes[item].dataValues.favorites.dataValues.day)+1)
             favoritedByDays[(foundUser.recipes[item].dataValues.favorites.dataValues.day)+1]=foundUser.recipes[item]
         }
         return favoritedByDays

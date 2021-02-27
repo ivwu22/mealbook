@@ -10,8 +10,7 @@ router.use(methodOverride('_method'));
 // Routes
 router.get('/', isLoggedIn, async (req, res) => {
     try {
-        const user = await db.user.findOne({where:{id:req.user.id}})
-    res.render('user/profile', {user:user});
+        res.render('user/profile');
     } catch (error){
         res.render('/main/404.ejs', error)
     }
@@ -19,8 +18,7 @@ router.get('/', isLoggedIn, async (req, res) => {
 
 router.get('/edit', isLoggedIn, async (req, res) => {
     try {
-        const user = await db.user.findOne({where:{id:req.user.id}});
-        res.render('user/profileEdit.ejs', {user:user})
+        res.render('user/profileEdit.ejs')
     } catch (error){
         res.render('/main/404.ejs', error)
     }

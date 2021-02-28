@@ -11,9 +11,10 @@ router.get('/', isLoggedIn, async (req, res) => {
     try{
         // const recipesForDay = loadRecipesForDay(req); , recipesForEachDay:recipesForDay
         const user = await db.user.findOne({where: {id: req.user.id}, include:[db.recipe]});
+        const randomFavorites = getRandomFavorites(user.recipes);
         const favoriteRecipeId = await findFavorites(req);
         const randomRecipes = await loadRandomRecipes(favoriteRecipeId);
-        res.render('user/dashboard', {userFavorites:user.recipes, recipes:randomRecipes, isFavorite: favoriteRecipeId})
+        res.render('user/dashboard', {userFavorites:randomFavorites, recipes:randomRecipes, isFavorite: favoriteRecipeId})
     } catch (error){
         res.render('/main/404.ejs', error)
     }
@@ -74,7 +75,7 @@ function getRandomInt(min, max){
     return Math.floor(Math.random()*(max-min)+min);
 }
 
-
+// This function gets two random recipes overall but not the ones we have already favorited
 function getTwoRandom(max, favoriteRecipeId){
     const randomNumbers= [];
     // Push two random numbers onto the array
@@ -99,6 +100,22 @@ function getTwoRandom(max, favoriteRecipeId){
         randomNumbers.pop();
     } 
     return randomNumbers;
+}
+
+// This function gets two random recipes from the ones I have already favorited
+function getRandomFavorites(recipeArray){
+    const randomFavorites=[];
+    const randomNumbers=[];
+    randomNumbers.push(getRandomInt(0,recipeArray.length));
+    randomNumbers.push(getRandomInt(0,recipeArray.length));
+    while(randomNumbers[0]===randomNumbers[1]) {
+        randomNumbers[1]=getRandomInt(0,recipeArray.length);
+    }
+    for(let item in randomNumbers) {
+        randomFavorites.push(recipeArray[randomNumbers[item]]);
+    }
+    console.log(randomFavorites);
+    return randomFavorites;
 }
 
 // 

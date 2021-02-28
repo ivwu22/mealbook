@@ -21,11 +21,13 @@ We used the following API to load our databases with delicious food: https://rap
 
 ## Installation Instructions
 #### 1. Install NPM dependencies
+
 > npm install
 #### 2. Create database and seed it
 > createdb mealplan
 > sequelize db:migrate
 > sequelize db:seed:all
+
 
 ## User Stories
 
@@ -37,9 +39,11 @@ We used the following API to load our databases with delicious food: https://rap
 ## Screenshots
  
 ## Wireframes
+
 ![Wireframe Dashboard](/public/img/wireframeDashboard.png)
 ![Wireframe Database](/public/img/wireframeDatabase.png)
 ![Wireframe User Flow](/public/img/wireframeUserFlow.png)
+
 
 ## Unsolved problems/Major Hurdles
 

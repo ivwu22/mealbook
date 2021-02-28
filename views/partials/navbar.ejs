@@ -7,7 +7,7 @@
     <ul class="navbar nav">
       <% if (currentUser) { %>
         <li class="nav-item" id="navbar-user-name">
-          <span>Hi <%=currentUser.name.charAt(0).toUpperCase() + currentUser.name.slice(1)%>!</span>
+          <span>Welcome back, <%=currentUser.name.charAt(0).toUpperCase() + currentUser.name.slice(1)%>!</span>
         </li>
       <% } %> 
     </ul>
@@ -20,20 +20,20 @@
           <li class="nav-item">
             <a class="nav-link" href="/recipe/">Explore Recipes</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/user/calendar">Meal Planning Calendar</a>
-          </li>
       </ul>
-      <ul d-flex justify-content-center>
+      <ul class="navbar-nav d-flex justify-content-center align-items-center">
         <% if (currentUser) { %>
           <li class="nav-item">
             <a class="nav-link"href="/user/dashboard">User Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"href="/user/profile">Profile</a>
+            <a class="nav-link" href="/user/calendar">Meal Planning Calendar</a>
           </li>
           <li class="nav-item">
             <a class="nav-link"href="/user/favorites">My Favorites</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"href="/user/profile">Profile</a>
           </li>
           <li class="nav-item">
             <a class="nav-link"href="/auth/logout">Logout</a>

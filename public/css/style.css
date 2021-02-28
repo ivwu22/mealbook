@@ -16,6 +16,8 @@ body {
   background-size:contain;
 }
 
+
+/* Navbar styling */
 nav{
   padding:0 !important;
 }
@@ -23,6 +25,10 @@ nav ul li {
   text-decoration: none;
   display: inline-block;
   margin-right: .3em;
+}
+
+#navbar-user-name{
+  padding-left: 15px;
 }
 
 

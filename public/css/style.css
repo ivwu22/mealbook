@@ -84,6 +84,11 @@ nav ul li {
   font-size:1.2rem;
 }
 
+.accordion-header{
+  font-weight:bold;
+  color:rgb(84, 154, 84);
+}
+
 li {
   padding: 5px;
 }

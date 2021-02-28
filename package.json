@@ -13,17 +13,36 @@
     "supertest": "^4.0.2"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "bcrypt": "^5.0.0",
+    "bootstrap": "^4.6.0",
     "connect-flash": "^0.1.1",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
+    "ejs-lint": "^1.1.0",
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.17.1",
+    "method-override": "^3.0.0",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pg": "^8.4.1",
-    "sequelize": "^6.3.5"
-  }
+    "sequelize": "^6.5.0",
+    "sequelize-cli": "^6.2.0"
+  },
+  "description": "## Project Description Our application will allow users to plan their meals for the next 7 days. With working from home on the rise and restrictions on dining at restaurants, cooking at home has become a routine in many people’s lives. Oftentimes it is hard to plan your grocery haul and what to eat for the next day, but this application will help users find recipes, favorite those that they like, plan the meals out, and have a shopping list generated!   We will be using the following API to load our databases with the delicious food: https://rapidapi.com/spoonacular/api/recipe-food-nutrition/endpoints",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muichc/project2.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/muichc/project2/issues"
+  },
+  "homepage": "https://github.com/muichc/project2#readme",
+  "keywords": []
 }

@@ -5,6 +5,7 @@ const session = require('express-session');
 const flash = require("connect-flash")
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn')
+const axios = require('axios')
 
 const app = express();
 
@@ -37,21 +38,40 @@ app.use((req, res, next) => {
   // current user to res.locals
   res.locals.alerts = req.flash()
   res.locals.currentUser = req.user
-
   next()
 })
 
+app.get('/info', (req, res)=>{
+  const options1 = {
+    method: 'GET',
+    url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/247969/analyzedInstructions',
+    params: {stepBreakdown: 'true'},
+    headers: {
+      'x-rapidapi-key': '4cb263df0bmsh3ff5c04afde99b5p1ad726jsn1de166cb145e',
+      'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+    }
+  };
+  axios.request(options1).then(function (response) {
+    console.log(response.data[0].steps);
+    res.send("Hello")
+  }).catch(function (error) {
+    console.error(error);
+  });
+})
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('main/index');
 });
 
-app.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
-});
 
+app.use('/user/profile', require('./routes/user/profile.js'));
 app.use('/auth', require('./routes/auth'));
+app.use('/recipe', require('./routes/recipe'));
+app.use('/user/favorites', require('./routes/user/favorite.js'));
+app.use('/user/calendar', require('./routes/user/calendar.js'));
+app.use('/user/dashboard', require('./routes/user/dashboard.js'));
 
-var server = app.listen(process.env.PORT || 3000, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
+
+const server = app.listen(process.env.PORT || 3000, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 3000}🎧`));
 
 module.exports = server;

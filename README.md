@@ -21,15 +21,13 @@ We used the following API to load our databases with delicious food: https://rap
 
 ## Installation Instructions
 #### 1. Install NPM dependencies
-```
-npm install
-```
+
+> npm install
 #### 2. Create database and seed it
-```
-createdb mealplan
-sequelize db:migrate
-sequelize db:seed:all
-```
+> createdb mealplan
+> sequelize db:migrate
+> sequelize db:seed:all
+
 
 ## User Stories
 
@@ -39,11 +37,13 @@ sequelize db:seed:all
 * AAU I'd want to be able to favorite recipes and refer back to the list.
 
 ## Screenshots
-
+ 
 ## Wireframes
-![Wireframe Dashboard](img/wireframeDashboard.png)
-![Wireframe Database](img/wireframeDatabase.png)
-![Wireframe User Flow](img/wireframeUserFlow.png)
+
+![Wireframe Dashboard](/public/img/wireframeDashboard.png)
+![Wireframe Database](/public/img/wireframeDatabase.png)
+![Wireframe User Flow](/public/img/wireframeUserFlow.png)
+
 
 ## Unsolved problems/Major Hurdles
 

@@ -11,7 +11,6 @@ router.get('/', isLoggedIn, async (req, res) => {
         )
         const dayArray = [];
         const recipesList = [];
-        const recipeDictionary = {};
         for (let i = 0; i <recipes[0].length; i++) {
             dayArray.push(recipes[0][i].day)
             recipesList.push({
@@ -22,8 +21,6 @@ router.get('/', isLoggedIn, async (req, res) => {
                 preptime: recipes[0][i].preptime,
             })
         }
-        console.log(recipesList);
-        console.log(dayArray);
         const favoriteRecipeId = await findFavorites(req);
         res.render('user/calendar', {
             day:dayArray,
@@ -64,14 +61,14 @@ router.post('/add/:id', isLoggedIn, async (req,res) => {
 async function findFavorites(req){
     try{
         const favoriteRecipeId=[];
-        if(req.user){
+        if(req.user) {
             const favorites = await db.favorites.findAll({where:{userId:req.user.id}})
             for (let item in favorites){
                 favoriteRecipeId.push(favorites[item].recipeId)
             }
         } 
         return favoriteRecipeId;
-    } catch (error){
+    } catch (error) {
         res.render('/main/404.ejs', error)
     }
 }

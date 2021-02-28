@@ -35,9 +35,9 @@ We used the following API to load our databases with delicious food: https://rap
 * AAU I'd want to be able to favorite recipes and refer back to the list.
 
 ## Screenshots
-
+ 
 ## Wireframes
-![Wireframe Dashboard](public/img/wireframeDashboard.png)
+![Wireframe Dashboard](/public/img/wireframeDashboard.png)
 ![Wireframe Database](/public/img/wireframeDatabase.png)
 ![Wireframe User Flow](/public/img/wireframeUserFlow.png)
 

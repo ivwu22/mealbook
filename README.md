@@ -41,9 +41,9 @@ sequelize db:seed:all
 ## Screenshots
 
 ## Wireframes
-![Wireframe Dashboard] (img/wireframeDashboard.png)
-![Wireframe Database] (img/wireframeDatabase.png)
-![Wireframe User Flow] (img/wireframeUserFlow.png)
+![Wireframe Dashboard](img/wireframeDashboard.png)
+![Wireframe Database](img/wireframeDatabase.png)
+![Wireframe User Flow](img/wireframeUserFlow.png)
 
 ## Unsolved problems/Major Hurdles
 

@@ -1,7 +1,7 @@
 <div>
   <h2>How To Make It!</h2>
   <hr>
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="col-sm-6">
       <div class="card">
         <div class="card-body">
@@ -13,14 +13,14 @@
             <li> <%= ingredients.dataValues.name %> <%= ingredients.dataValues.quantity %> </li>
               <% }) %> 
           </ul>  
-          <ol>
+          <ul>
               <% instructions.forEach(instruction => { %>
-                  <li> <%= instruction.dataValues.stepNumber %>. <%= instruction.dataValues.step %></li>
+                  <li style="list-style-type: none;"> <%= instruction.dataValues.stepNumber %>. <%= instruction.dataValues.step %></li>
               <% }) %>
-          </ol>
+          </ul>
             <% if (isFavorite) { %>
               <% if (isFavorite.includes(recipe.id)) { %>
-                <form method="POST" action="/user/favorites/<%=recipe.id%>/?_method=DELETE">
+                <form m ethod="POST" action="/user/favorites/<%=recipe.id%>/?_method=DELETE">
                   <button type="submit" class="btn btn-success">Remove from Favorites</button>
                 </form> 
               <% } else { %>

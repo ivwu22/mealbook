@@ -1,7 +1,16 @@
-<h1>Which day would you want to eat this?</h1>
-<% console.log(recipe) %> 
-<form action="/user/calendar/add/<%=recipe.id%> " method="POST">
-    <label for="day">Day</label>
-    <input type="text" class="form-control" id="day" name="day" required>
-    <input type="submit" class="btn btn-primary">
-</form>
+<h2>Which day would you want to eat this?</h2>
+<div class="row justify-content-center overflow-hidden">
+    <form action="/user/calendar/add/<%=recipe.id%> " method="POST">
+        <div class="col-1 mx-auto">
+            <label class="form-label" for="day">Day</label>
+        </div>
+        <div class="col-2 mx-auto">
+            <input type="text" class="form-control" id="day" name="day" required>
+        </div>
+    </form>
+</div>
+
+<div class="mx-auto">
+    <input type="submit" class="btn btn-success gy-3">
+</div>
+

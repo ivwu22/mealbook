@@ -8,20 +8,18 @@ const router = express.Router()
 
 router.get('/', async (req,res) => {
     try{
-        const allRecipes = await db.recipe.findAll()
+        let allRecipes = await db.recipe.findAll()
         const favoriteRecipeId = await findFavorites(req)
-        const nameFilter = req.query.nameFilter;
-            if(nameFilter) {
-                console.log("recipes itself is >>>>>>", allRecipes[0])
-                const recipeAsArray = Object.entries(allRecipes);
-                console.log("ARRAY OBJECT", recipeAsArray);
-                allRecipes = allRecipes.filter(function (recipeName) {
-                    return recipeName.toLowerCase() === nameFilter.toLowerCase();
-                });
-            }
-        res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId})
+        const allRecipeNames=getNames(allRecipes);
+        const recipeFilter=req.query.searchInput;
+        if(recipeFilter){
+            allRecipes = allRecipes.filter(function(recipe){
+                return recipe.name.toLowerCase() ===recipeFilter.toLowerCase();
+            })
+        }
+        res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId, allRecipeNames:allRecipeNames})
     } catch(error){
-        res.status(404).render('main/404')
+        res.status(404).render('main/404', {error:error})
     }
 })
 
@@ -65,6 +63,8 @@ db.ingredient.findAll({
 
 
 // Helper functions for route
+
+// Finds recipe ids of users and stores them in an array
 async function findFavorites(req){
     const favoriteRecipeId=[];
     if(req.user){
@@ -73,8 +73,16 @@ async function findFavorites(req){
             favoriteRecipeId.push(favorites[item].recipeId)
         }
     } 
-    console.log(favoriteRecipeId);
     return favoriteRecipeId;
+}
+
+// Get names of recipes
+function getNames(recipeArray){
+    const nameArray=[];
+    for(let item in recipeArray){
+        nameArray.push(recipeArray[item].dataValues.name)
+    }
+    return nameArray;
 }
 
 

@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#login">
+<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#login">
     Login
 </button>
 
@@ -14,18 +14,18 @@
             <form action="/auth/login" method="POST">
                 <div class="modal-body container">
                     <div class="form-group row align-items-center">
-                        <div class= "col-2 offset-md-2">
-                            <label for="auth-email">Email</label>
+                        <div class= "col-md-2 offset-md-2 col-sm-4">
+                            <label class="form-label"for="auth-email">Email</label>
                         </div>
-                        <div class= "col-6">
+                        <div class= "col-md-6 col-sm-6">
                             <input class="text-center form-control"id="auth-email" type="email" name="email" value="rainbow@example.com">
                         </div>
                     </div>
                     <div class=" form-group row align-items-center"> 
-                        <div class="col-2 offset-md-2">
-                            <label for="auth-password">Password</label>
+                        <div class="col-md-2 offset-md-2">
+                            <label class="form-label"for="auth-password">Password</label>
                         </div>
-                        <div class="col-6">
+                        <div class="col-md-6">
                             <input class="text-center form-control"id="auth-password" type="password" name="password" value="password">
                         </div>
                     </div>

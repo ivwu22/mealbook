@@ -1,19 +1,39 @@
 <% const dayArray = ['Monday', 'Tuesday', "Wednesday", "Thursday", "Friday", "Saturday" , "Sunday"] %> 
 <% const daysUsed = [false, false, false, false, false, false, false] %> 
 
-<% recipesList.forEach((recipe, index)=> { %>
-    <% const currentDay = recipe.day -1 %> 
-    <h2><%= dayArray[currentDay] %> </h2>
-    <%- include('../partials/recipeCard', {recipe:recipe, isFavorite:isFavorite}) %>
-    <% daysUsed[currentDay] = true %> 
-<% }) %>
+<div class="row">
+    <div class="col-md-6">
 
-<br>
-<h2>You forgot to plan a meal for these day(s): </h2>
-<hr>
-<% for (let i = 0; i < daysUsed.length; i++) { %>
-    <% if (!daysUsed[i]) { %>
-        <h2><%= dayArray[i] %> </h2>
-        <a href="/user/favorites">Add meal here!</a>
-    <%}%>
-<% } %> 
+        <div class="accordion" id="accordionExample">
+            <% recipesList.forEach((recipe, index)=> { %>    
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading<%=index%>">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%=index%>" aria-expanded="true" aria-controls="collapseOne">
+                    <% const currentDay = recipe.day -1 %> 
+                    <%= dayArray[currentDay] %> 
+                </button>
+              </h2>
+              <div id="collapse<%=index%>" class="accordion-collapse collapse show" aria-labelledby="heading<%=index%>" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <%- include('../partials/recipeCard', {recipe:recipe, isFavorite:null}) %>
+                    <% daysUsed[currentDay] = true %> 
+                </div>
+              </div>
+            </div>
+            <% }) %>
+        </div>
+
+    </div>
+
+    <div class="col-md-6 no-plan-section">
+        <h2>You didn't plan a meal for these day(s): </h2>
+        <hr>
+        <% for (let i = 0; i < daysUsed.length; i++) { %>
+            <% if (!daysUsed[i]) { %>
+                <h3><%= dayArray[i] %> </h3>
+                <a href="/user/favorites">Add meal here!</a>
+            <%}%>
+        <% } %> 
+    </div>
+</div>
+

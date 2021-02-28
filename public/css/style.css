@@ -2,9 +2,10 @@
   box-sizing: border-box; 
 }
 
-div.container {
+#body-container {
   /* background-color:ivory */
   background-color:white;
+  min-height:100vh;
   /* background-color:rgb(213, 206, 206); */
 }
 body {
@@ -63,22 +64,40 @@ nav ul li {
 
 
 
+/* Details page styling */
+
+.details-image{
+  max-width: 333px;
+  max-height: 320px;
+}
+
+
+
 /* Styling for individual items */
 .app-name{
   color:rgb(84, 154, 84);
   font-family: 'Pacifico', cursive;
 }
+
+.user-name{
+  font-family: 'Indie Flower', cursive;
+  font-size:1.2rem;
+}
+
 li {
   padding: 5px;
 }
 
 h1 {
-  color: rgb(146, 236, 140);
+  color:rgb(84, 154, 84);
 }
 
 a, h2, h3, .page-title {
   color:rgb(84, 154, 84);
 }
+
 input {
   width: 275px;
 }
+
+

@@ -7,7 +7,7 @@
     <div class="landing-page">
         <h2><span class="">Find out what to eat this week!</span></h2>
         <% if (currentUser){ %>
-            <span>Hi <%=currentUser.name.charAt(0).toUpperCase() + currentUser.name.slice(1)%>!</span>
+            <p class="user-name" id="landing-page-user-name">Hi <%=currentUser.name.charAt(0).toUpperCase() + currentUser.name.slice(1)%>!</p>
         <% } %> 
         <form method="GET" action="/recipe">
             <button class="btn btn-outline-success"type="submit">

@@ -4,7 +4,7 @@
 <% recipesList.forEach((recipe, index)=> { %>
     <% const currentDay = recipe.day -1 %> 
     <h2><%= dayArray[currentDay] %> </h2>
-    <%- include('../partials/recipeCard', {recipe:recipe, isFavorite:isFavorite}) %>
+    <%- include('../partials/recipeCard', {recipe:recipe, isFavorite:null}) %>
     <% daysUsed[currentDay] = true %> 
 <% }) %>
 

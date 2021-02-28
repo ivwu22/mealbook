@@ -9,21 +9,21 @@ router.get('/', isLoggedIn, async (req, res) => {
         const recipes = await db.sequelize.query(
             `SELECT * FROM favorites f,recipes r WHERE f."userId" = ${req.user.id} AND f."recipeId" = r.id ORDER BY day`
         )
-        const dayArray = [];
         const recipesList = [];
         for (let i = 0; i <recipes[0].length; i++) {
-            dayArray.push(recipes[0][i].day)
-            recipesList.push({
-                id: recipes[0][i].recipeId,
-                name: recipes[0][i].name,
-                picture: recipes[0][i].picture,
-                servings: recipes[0][i].servings,
-                preptime: recipes[0][i].preptime,
-            })
-        }
+            if (recipes[0][i].day) {
+                    recipesList.push({
+                        day: recipes[0][i].day,
+                        id: recipes[0][i].recipeId,
+                        name: recipes[0][i].name,
+                        picture: recipes[0][i].picture,
+                        servings: recipes[0][i].servings,
+                        preptime: recipes[0][i].preptime,
+                    })
+                }
+            }
         const favoriteRecipeId = await findFavorites(req);
         res.render('user/calendar', {
-            day:dayArray,
             isFavorite: favoriteRecipeId,
             recipesList: recipesList
         })

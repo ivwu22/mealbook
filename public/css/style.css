@@ -17,7 +17,6 @@ body {
   background-size:contain;
 }
 
-
 /* Navbar styling */
 nav{
   padding:0 !important;
@@ -31,9 +30,6 @@ nav ul li {
 #navbar-user-name{
   padding-left: 15px;
 }
-
-
-
 
 
 
@@ -60,7 +56,6 @@ nav ul li {
   max-width: 333px;
   max-height: 320px;
 }
-
 
 
 
@@ -104,5 +99,3 @@ a, h2, h3, .page-title {
 input {
   width: 275px;
 }
-
-

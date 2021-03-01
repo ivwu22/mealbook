@@ -76,24 +76,24 @@ function getTwoRandom(max, favoriteRecipeId){
     // Push two random numbers onto the array
     randomNumbers.push(getRandomInt(0,max));
     randomNumbers.push(getRandomInt(0,max));
-    // If the random recipe id in index 0 is already in favorites, and if we haven't looped it over a 100 times yet, change the first random number
+    // If the random recipe id in index 0 is already in favorites, and if we haven't looped it over a 10 times yet, change the first random number
     let key = 0;
-    while(favoriteRecipeId.includes(randomNumbers[0]) && key <= 100) {
+    while(key <= 10 && (favoriteRecipeId.includes(randomNumbers[0]))) {
         randomNumbers[0]=getRandomInt(0,max);
         key++;
     }
-    // If the random recipe id in index 1 is already in favorites or if the first and second number in the array are the same, AND if the number of times we have looped is less than a hundred, change the second random number
+    // If the random recipe id in index 1 is already in favorites or if the first and second number in the array are the same, AND if the number of times we have looped is less than 10, change the second random number
     key = 0;
-    while((favoriteRecipeId.includes(randomNumbers[1]) || randomNumbers[0]===randomNumbers[1]) && key <= 100){
+    while((key <= 10 && (favoriteRecipeId.includes(randomNumbers[1]) || randomNumbers[0]===randomNumbers[1])) ){
         randomNumbers[1]=getRandomInt(0,max);
         key++;
     }
     // After the looping, if either of the recipe ids are already favorited, remove them from the array
-    if (favoriteRecipeId.includes(randomNumbers[0])) {
-        randomNumbers.shift();
-    } else if (favoriteRecipeId.includes(randomNumbers[1])) {
-        randomNumbers.pop();
-    } 
+    // if (favoriteRecipeId.includes(randomNumbers[0])) {
+    //     randomNumbers.shift();
+    // } else if (favoriteRecipeId.includes(randomNumbers[1])) {
+    //     randomNumbers.pop();
+    // } 
     return randomNumbers;
 }
 

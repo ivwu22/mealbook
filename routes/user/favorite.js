@@ -20,7 +20,6 @@ router.get('/', isLoggedIn, (req, res) => {
          favoriteRecipeId.push(foundUser.recipes[item].dataValues.id)
       }
       res.render('user/favorites.ejs', {favoritesList:foundUser.recipes, isFavorite: favoriteRecipeId})
-      
    })
 })
 
@@ -31,8 +30,16 @@ router.post('/:id', isLoggedIn, (req,res)=> {
       }, include:[db.recipe]
    }).then(foundUser => {
       foundUser.addRecipe(req.params.id).then(()=>{
-         req.flash('success', 'You have added this to your favorites!');
-         res.redirect('/user/favorites');
+         db.recipe.findOne({
+            where:{
+               id:req.params.id
+            }
+         }).then(recipe=>{
+            console.log(recipe);
+            req.flash('success', `You have added ${recipe.name} to your favorites!`);
+            res.redirect('/user/favorites');
+         })
+         
       })
    })
 })

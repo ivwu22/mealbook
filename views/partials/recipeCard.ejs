@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <h3 class="card-title"><%= recipe.name %> </h3>
 <img src="<%= recipe.picture  %> " class="card-img-top" alt="...">
@@ -19,3 +20,32 @@
     <button type="submit" class="btn btn-success">Make it!</button>
   </form>
 </div>
+=======
+<div class="row" style="justify-content: center; align-items: center; text-align: center">
+  <div class="col-sm-6">
+      <div class="card">
+          <div class="card-body">
+              <h3 class="card-title"><%= recipe.name %> </h3>
+              <img src="<%= recipe.picture  %> " class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <p class="card-text"> Serving Size: <%= recipe.servings %> </p>
+                    <p class="card-text"> Prep Time (in minutes): <%= recipe.preptime %> </p>
+                    <% if (isFavorite) { %>
+                      <% if (isFavorite.includes(recipe.id)) { %>
+                        <a href="/calendar/add/<%= recipe.id %>">Add to calendar</a>
+                        <form method="POST" action="/user/favorites/<%=recipe.id%>/?_method=DELETE">
+                          <button type="submit" class="btn btn-success">Remove from Favorites</button>
+                        </form> 
+                      <% } else { %>
+                        <form method="POST" action="/user/favorites/<%=recipe.id%>">
+                          <button type="submit" class="btn btn-success">Add to Favorites</button>
+                        </form>
+                      <% } %>
+                    <% } %>
+                    <hr>
+                    <form method="GET" action="/recipe/details/<%=recipe.id%>">
+                      <% console.log(recipe) %> 
+                      <button type="submit" class="btn btn-success">See more details</button>
+                    </form>
+                  </div>
+>>>>>>> submain

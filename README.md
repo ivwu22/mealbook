@@ -40,10 +40,10 @@ We used the following API to load our databases with delicious food: https://rap
 
 ## Screenshots
 
-![Wireframe Dashboard](/public/img/landing.png)
-![Wireframe Dashboard](/public/img/explore.png)
-![Wireframe Dashboard](/public/img/dashboard.png)
-![Wireframe Dashboard](/public/img/calendar.png)
+![Landing Page Screenshot](/public/img/landing.png)
+![Explore Page Screenshot](/public/img/explore.png)
+![Dashboard Page Screenshot](/public/img/dashboard.png)
+![Calendar Page Screenshot](/public/img/calendar.png)
  
 ## Wireframes
 

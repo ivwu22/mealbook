@@ -1,4 +1,4 @@
-# Project 2
+# Project 2 (Meal Hack)
 
 ## Project Description
 Our application will allow users to plan their meals for the next 7 days. With working from home on the rise and restrictions on dining at restaurants, cooking at home has become a routine in many people’s lives. Oftentimes it is hard to plan your grocery haul and what to eat for the next day, but this application will help users find recipes, favorite those that they like and plan the meals out!  

@@ -17,7 +17,6 @@ body {
   background-size:contain;
 }
 
-
 /* Navbar styling */
 nav{
   padding:0 !important;
@@ -31,9 +30,6 @@ nav ul li {
 #navbar-user-name{
   padding-left: 15px;
 }
-
-
-
 
 
 
@@ -63,7 +59,6 @@ nav ul li {
 
 
 
-
 /* Details page styling */
 
 .details-image{
@@ -77,10 +72,12 @@ nav ul li {
 .app-name{
   color:rgb(84, 154, 84);
   font-family: 'Pacifico', cursive;
+  font-size:50px;
 }
 
 .user-name{
-  font-family: 'Indie Flower', cursive;
+  /* font-family: 'Indie Flower', cursive; */
+  font-family: 'Architects Daughter', cursive;
   font-size:1.2rem;
 }
 
@@ -88,6 +85,8 @@ nav ul li {
   font-weight:bold;
   color:rgb(84, 154, 84);
 }
+
+
 
 li {
   padding: 5px;
@@ -105,4 +104,12 @@ input {
   width: 275px;
 }
 
+
+.page-title, .no-plan-section{
+  font-family: 'Architects Daughter', cursive;
+}
+
+.no-plan-section>h3{
+  color:black;
+}
 

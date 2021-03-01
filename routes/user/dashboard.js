@@ -4,8 +4,6 @@ const db = require('../../models');
 const isLoggedIn = require('../../middleware/isLoggedIn')
 const router = express.Router();
 
-
-
 // Routes
 router.get('/', isLoggedIn, async (req, res) => {
     try{
@@ -20,7 +18,6 @@ router.get('/', isLoggedIn, async (req, res) => {
     }
 })
 
-
 // Helper functions for routes
 
 function loadRecipesForDay(req){
@@ -31,8 +28,6 @@ function loadRecipesForDay(req){
         }, include:[db.recipe]
     }).then(function(foundUser){
         for (let item in foundUser.recipes) {
-            // console.log(foundUser.recipes)
-            // console.log(">>>>>>>",(foundUser.recipes[item].dataValues.favorites.dataValues.day)+1)
             favoritedByDays[(foundUser.recipes[item].dataValues.favorites.dataValues.day)+1]=foundUser.recipes[item]
         }
         return favoritedByDays
@@ -114,11 +109,7 @@ function getRandomFavorites(recipeArray){
     for(let item in randomNumbers) {
         randomFavorites.push(recipeArray[randomNumbers[item]]);
     }
-    console.log(randomFavorites);
     return randomFavorites;
 }
-
-// 
-
 
 module.exports = router;

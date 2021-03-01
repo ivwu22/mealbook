@@ -59,6 +59,4 @@ async function findFavorites(req){
    }
 }
 
-
-
 module.exports = router;

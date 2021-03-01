@@ -45,5 +45,3 @@ axios.request(options3).then(function (response) {
 }).catch(function (error) {
 	console.error(error);
 });
-
-

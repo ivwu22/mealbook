@@ -1,6 +1,4 @@
 //route for recipes
-
-//route for recipes
 const express = require('express')
 const db = require('../models')
 const router = express.Router()
@@ -31,7 +29,6 @@ router.get('/details/:id', async (req,res) => {
     res.render('recipe/details.ejs', {recipe:recipe, isFavorite:favoriteRecipeId, instructions:instructions, ingredients:ingredients})
 })
 
-
 // this is a working route for searching the database by ingredient that links to the search bar 
 router.get('/searchByIngredient', (req, res) => {
     db.ingredient.findAll({
@@ -61,7 +58,6 @@ db.ingredient.findAll({
 }) 
 });
 
-
 // Helper functions for route
 
 // Finds recipe ids of users and stores them in an array
@@ -84,7 +80,5 @@ function getNames(recipeArray){
     }
     return nameArray;
 }
-
-
 
 module.exports = router;

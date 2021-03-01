@@ -1,5 +1,8 @@
 # Project 2 (Meal Hack)
 
+## Link to deployed project
+http://mealhack.herokuapp.com/user/calendar
+
 ## Project Description
 Our application will allow users to plan their meals for the next 7 days. With working from home on the rise and restrictions on dining at restaurants, cooking at home has become a routine in many people’s lives. Oftentimes it is hard to plan your grocery haul and what to eat for the next day, but this application will help users find recipes, favorite those that they like and plan the meals out!  
 We used the following API to load our databases with delicious food: https://rapidapi.com/spoonacular/api/recipe-food-nutrition/endpoints
@@ -40,10 +43,10 @@ We used the following API to load our databases with delicious food: https://rap
 
 ## Screenshots
 
-![Screenshot of Landing Page](/public/img/landing.png)
-![Screenshot of Explore Page](/public/img/explore.png)
-![Screenshot of Dashboard](/public/img/dashboard.png)
-![Screenshot of Calendar Page](/public/img/calendar.png)
+![Landing Page Screenshot](/public/img/landing.png)
+![Explore Page Screenshot](/public/img/explore.png)
+![Dashboard Page Screenshot](/public/img/dashboard.png)
+![Calendar Page Screenshot](/public/img/calendar.png)
  
 ## Wireframes
 

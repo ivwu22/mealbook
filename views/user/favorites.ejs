@@ -1,8 +1,12 @@
 <h1>Favorites</h1>
 <div class="row">
-    <%favoritesList.forEach(favorite=> { %>
-        <div class="col-md-6">
-            <%- include('../partials/recipeCard', {recipe:favorite, isFavorite:isFavorite}) %>
-        </div>
-    <% }) %>
+    <% if (favoritesList.length >0) { %>
+        <%favoritesList.forEach(favorite=> { %>
+            <div class="col-md-6">
+                <%- include('../partials/recipeCard', {recipe:favorite, isFavorite:isFavorite}) %>
+            </div>
+        <% }) %>
+    <%} else {%>
+        <p>You don't have any favorites yet!</p>
+    <%}%> 
 </div>

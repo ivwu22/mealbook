@@ -2,6 +2,7 @@
 const express = require('express')
 const db = require('../models')
 const router = express.Router()
+const axios = require('axios')
 //GET all recipes 
 
 router.get('/', async (req,res) => {
@@ -11,11 +12,47 @@ router.get('/', async (req,res) => {
         const allRecipeNames=getNames(allRecipes);
         const recipeFilter=req.query.searchInput;
         if(recipeFilter){
-            allRecipes = allRecipes.filter(function(recipe){
-                return recipe.name.toLowerCase() ===recipeFilter.toLowerCase();
+            // allRecipes = allRecipes.filter(function(recipe){
+            //     return recipe.name.toLowerCase() ===recipeFilter.toLowerCase();
+            // })
+            console.log('/////', req.query)
+            const options1 = {
+                method: 'GET',
+                url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search",
+                params: {
+                    query: req.query.searchInput,
+                    number: '20',
+                    ofset: '0',
+                },
+                headers: {
+                    'x-rapidapi-key': process.env.API_KEY,
+                    'x-rapidapi-host': process.env.API_HOST
+                }
+            }
+            axios.request(options1).then((responseData) => {
+                allRecipes=responseData.data.results
+                res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId, allRecipeNames:allRecipeNames})
             })
+        } else {
+        const options = ['food', 'main', 'pasta', 'delicious']
+        const options2 = {
+            method: 'GET',
+            url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search",
+            params: {
+                query: options[Math.floor(Math.random()*(options.length))],
+                number: '20',
+                ofset: '0',
+            },
+            headers: {
+                'x-rapidapi-key': process.env.API_KEY,
+                'x-rapidapi-host': process.env.API_HOST
+            }
         }
-        res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId, allRecipeNames:allRecipeNames})
+        axios.request(options2).then((responseData) => {
+            allRecipes=responseData.data.results
+            res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId, allRecipeNames:allRecipeNames})
+        })
+        }
     } catch(error){
         res.status(404).render('main/404', {error:error})
     }
@@ -28,6 +65,7 @@ router.get('/details/:id', async (req,res) => {
     const favoriteRecipeId = await findFavorites(req);
     res.render('recipe/details.ejs', {recipe:recipe, isFavorite:favoriteRecipeId, instructions:instructions, ingredients:ingredients})
 })
+
 
 
 // Helper functions for route

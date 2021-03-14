@@ -52,7 +52,8 @@ We used the following API to load our databases with delicious food: https://rap
 
 ![Wireframe Dashboard](/public/img/wireframeDashboard.png)
 ![Wireframe Database](/public/img/wireframeDatabase.png)
-![Wireframe User Flow](https://drive.google.com/file/d/15T7mIUySI98h_MO3xABhITxptgTHwOvn/view?usp=sharing)
+![Wireframe User Flow](/public/img/wireframeUserFlow.png)
+[UserFlow - Large](https://drive.google.com/file/d/15T7mIUySI98h_MO3xABhITxptgTHwOvn/view?usp=sharing)
 
 
 ## Unsolved problems/Major Hurdles

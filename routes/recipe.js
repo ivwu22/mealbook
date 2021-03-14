@@ -12,9 +12,9 @@ router.get('/', async (req,res) => {
         const allRecipeNames=getNames(allRecipes);
         const recipeFilter=req.query.searchInput;
         if(recipeFilter){
-            // allRecipes = allRecipes.filter(function(recipe){
-            //     return recipe.name.toLowerCase() ===recipeFilter.toLowerCase();
-            // })
+            allRecipes = allRecipes.filter(function(recipe){
+                return recipe.name.toLowerCase() ===recipeFilter.toLowerCase();
+            })
             console.log('/////', req.query)
             const options1 = {
                 method: 'GET',

@@ -7,7 +7,8 @@ const axios = require('axios')
 
 router.get('/', async (req,res) => {
     try{
-        let allRecipes = await db.recipe.findAll()
+        // let allRecipes = await db.recipe.findAll()
+        let allRecipes = []
         const favoriteRecipeId = await findFavorites(req)
         const allRecipeNames=getNames(allRecipes);
         const recipeFilter=req.query.searchInput;
@@ -16,7 +17,7 @@ router.get('/', async (req,res) => {
                 return recipe.name.toLowerCase() ===recipeFilter.toLowerCase();
             })
             console.log('/////', req.query)
-            const options1 = {
+            const searchResults = {
                 method: 'GET',
                 url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search",
                 params: {
@@ -29,13 +30,35 @@ router.get('/', async (req,res) => {
                     'x-rapidapi-host': process.env.API_HOST
                 }
             }
-            axios.request(options1).then((responseData) => {
-                allRecipes=responseData.data.results
+            axios.request(searchResults).then((responseData) => {
+                let results = responseData.data.results
+                allRecipes = results
+                for (let i = 0; i < results.length; i++){
+                    console.log(results[i])
+                    db.recipe.findOrCreate({
+                        where: {
+                            title : results[i].title,
+                            api : results[i].id,
+                            image : results[i].image,
+                            readyInMinutes : results[i].readyInMinutes,
+                            servings : results[i].servings
+                        }
+                    }).then(([recipe, created]) => {
+                        allRecipes.push(db.recipe.findOne({
+                            where: {
+                                title:results[i].title
+                            }
+                        })) 
+                    })
+                } 
                 res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId, allRecipeNames:allRecipeNames})
+
+                // allRecipes=responseData.data.results
+                // res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId, allRecipeNames:allRecipeNames})
             })
         } else {
         const options = ['food', 'main', 'pasta', 'delicious']
-        const options2 = {
+        const explore = {
             method: 'GET',
             url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search",
             params: {
@@ -48,17 +71,40 @@ router.get('/', async (req,res) => {
                 'x-rapidapi-host': process.env.API_HOST
             }
         }
-        axios.request(options2).then((responseData) => {
-            allRecipes=responseData.data.results
+            axios.request(explore).then((responseData) => {
+            let results = responseData.data.results
+            allRecipes = results
+            for (let i = 0; i < results.length; i++){
+                console.log(results[i])
+                db.recipe.findOrCreate({
+                    where: {
+                        title : results[i].title,
+                        api : results[i].id,
+                        image : results[i].image,
+                        readyInMinutes : results[i].readyInMinutes,
+                        servings : results[i].servings
+                    }
+                }).then(([recipe, created]) => {
+                    allRecipes.push(db.recipe.findOne({
+                        where: {
+                            title:results[i].title
+                        }
+                    })) 
+                })
+            } 
             res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId, allRecipeNames:allRecipeNames})
-        })
+            }
+            )
         }
-    } catch(error){
+    }
+        catch(error){
         res.status(404).render('main/404', {error:error})
     }
 })
 
+
 router.get('/details/:id', async (req,res) => {
+    console.log(req.params);
     const recipe = await db.recipe.findOne({where:{id:req.params.id}, include:[db.user]})
     const ingredients = await db.ingredient.findAll({where:{recipeId:recipe.id}})
     const instructions = await db.instruction.findAll({where:{recipeId:recipe.id}})

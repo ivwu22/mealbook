@@ -8,16 +8,19 @@ module.exports = {
             primaryKey: true,
             type: Sequelize.INTEGER
         },
-        name: {
+        api: {
+            type: Sequelize.INTEGER
+        },
+        title: {
             type: Sequelize.STRING
         },
-        picture: {
+        image: {
             type: Sequelize.STRING
         },
         servings: {
             type: Sequelize.INTEGER
         },
-        preptime: {
+        readyInMinutes: {
             type: Sequelize.INTEGER
         },
         createdAt: {

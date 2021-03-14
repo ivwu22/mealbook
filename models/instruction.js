@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   instruction.init({
     stepNumber: DataTypes.INTEGER,
-    step: DataTypes.STRING,
+    step: DataTypes.TEXT,
     recipeId: DataTypes.INTEGER
   }, {
     sequelize,

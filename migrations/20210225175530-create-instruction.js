@@ -12,7 +12,7 @@ module.exports = {
             type: Sequelize.INTEGER
         },
         step: {
-            type: Sequelize.STRING
+            type: Sequelize.TEXT
         },
         recipeId: {
             type: Sequelize.INTEGER

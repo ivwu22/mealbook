@@ -1,9 +1,57 @@
 const passport = require('../config/ppConfig');
 const db = require('../models');
+const axios = require('axios');
 
 // ################################################
 // # Helper functions for other controllers
 // ################################################
+
+// Axios request
+async function requestAxios (searchQuery) {
+    let allRecipes = [];
+    const options = ['food', 'main', 'pasta', 'delicious']
+    const searchResults = {
+        method: 'GET',
+        url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/search",
+        params: {
+            query: "burger",
+            number: '20',
+            ofset: '0',
+        },
+        headers: {
+            'x-rapidapi-key': process.env.API_KEY,
+            'x-rapidapi-host': process.env.API_HOST
+        }
+    }
+    console.log("search query within request axios >>>>", searchQuery);
+    if (searchQuery) {
+        searchResults["params"].query = searchQuery
+    } else {
+        searchResults["params"].query = options[Math.floor(Math.random()*(options.length))]
+    }
+    const responseData = await axios.request(searchResults);
+    let results = responseData.data.results
+    console.log(`This is the results before setting allRecipes >>>>${results}`);
+    allRecipes = results
+    for (let i = 0; i < results.length; i++){
+        // console.log(results[i])
+        const [recipe, created] = await db.recipe.findOrCreate({
+            where: {
+                title : results[i].title,
+                api : results[i].id,
+                image : results[i].image,
+                readyInMinutes : results[i].readyInMinutes,
+                servings : results[i].servings
+            }
+        })
+        allRecipes.push(recipe);
+    }
+    return allRecipes; 
+}
+
+
+
+
 
 // Loads recipe ids that have been favorited by user
 async function findFavorites(req){
@@ -103,9 +151,20 @@ function getTwoFavorites(recipeArray){
     return twoFavorites;
 }
 
+// Get names of recipes
+function getNames(recipeArray){
+    const nameArray=[];
+    for(let item in recipeArray){
+        nameArray.push(recipeArray[item].dataValues.name)
+    }
+    return nameArray;
+}
+
 
 module.exports = {
     findFavorites,
     getTwoRandom,
-    getTwoFavorites
+    getTwoFavorites,
+    requestAxios,
+    getNames 
 }

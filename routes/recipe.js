@@ -15,12 +15,11 @@ router.get('/', async (req,res) => {
         // let allRecipes = await db.recipe.findAll()
         let allRecipes = []
         const favoriteRecipeId = await helperController.findFavorites(req)
-        const allRecipeNames=getNames(allRecipes);
         const recipeFilter=req.query.searchInput;
         if(recipeFilter){
-            allRecipes = allRecipes.filter(function(recipe){
-                return recipe.name.toLowerCase() ===recipeFilter.toLowerCase();
-            })
+            // allRecipes = allRecipes.filter(function(recipe){
+            //     return recipe.name.toLowerCase() ===recipeFilter.toLowerCase();
+            // })
             console.log('/////', req.query)
             const searchResults = {
                 method: 'GET',
@@ -56,10 +55,10 @@ router.get('/', async (req,res) => {
                         })) 
                     })
                 } 
-                res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId, allRecipeNames:allRecipeNames})
+                res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId})
 
                 // allRecipes=responseData.data.results
-                // res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId, allRecipeNames:allRecipeNames})
+                // res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId})
             })
         } else {
         const options = ['food', 'main', 'pasta', 'delicious']
@@ -97,7 +96,7 @@ router.get('/', async (req,res) => {
                     })) 
                 })
             } 
-            res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId, allRecipeNames:allRecipeNames})
+            res.render('recipe/explore', {recipes:allRecipes, isFavorite:favoriteRecipeId})
             }
             )
         }
@@ -112,13 +111,6 @@ router.get('/details/:id', recipeController.getDetailsPage)
 
 
 
-// Get names of recipes
-function getNames(recipeArray){
-    const nameArray=[];
-    for(let item in recipeArray){
-        nameArray.push(recipeArray[item].dataValues.name)
-    }
-    return nameArray;
-}
+
 
 module.exports = router;

@@ -1,6 +1,7 @@
 const passport = require('../config/ppConfig');
 const db = require('../models');
 const axios = require('axios');
+const Sequelize = require('sequelize');
 
 // ################################################
 // # Helper functions for other controllers
@@ -92,11 +93,17 @@ function loadRecipesForDay(req){
 // ################################################
 
 // Loads random recipes for the dashboard
-async function loadRandomRecipes(favoriteRecipeId){
+async function loadRandomRecipes(res, favoriteRecipeId){
     try {
         const randomRecipes = [];
-        const recipes = await db.recipe.findAll();
-        const randomNumbers = getTwoRandom(recipes.length, favoriteRecipeId);
+        const recipes = await db.recipe.findAll({
+            where:{
+                id: {
+                    [Sequelize.Op.notIn]:favoriteRecipeId
+                }
+            }
+        });
+        const randomNumbers = getTwoRandom(recipes.length);
         for (let item in randomNumbers){
             randomRecipes.push(recipes[randomNumbers[item]]);
         }
@@ -114,30 +121,17 @@ function getRandomInt(min, max){
 }
 
 // This function gets two random recipes overall but not the ones we have already favorited
-function getTwoRandom(max, favoriteRecipeId){
+function getTwoRandom(max){
     const randomNumbers= [];
     // Push two random numbers onto the array
     randomNumbers.push(getRandomInt(0,max));
     randomNumbers.push(getRandomInt(0,max));
-
-    // If the random recipe id in index 0 is already in favorites, and if we haven't looped it over  10 times yet, change the first random number
+    // If the first and second number in the array are the same, change the second random number (Max number of loops = 10)
     let key = 0;
-    while(key <= 10 && (favoriteRecipeId.includes(randomNumbers[0]))) {
-        randomNumbers[0]=getRandomInt(0,max);
-        key++;
-    }
-    // If the random recipe id in index 1 is already in favorites or if the first and second number in the array are the same, AND if the number of times we have looped is less than 10, change the second random number
-    key = 0;
-    while((key <= 10 && (favoriteRecipeId.includes(randomNumbers[1]) || randomNumbers[0]===randomNumbers[1])) ){
+    while((key <= 10 && randomNumbers[0]===randomNumbers[1]) ){
         randomNumbers[1]=getRandomInt(0,max);
         key++;
     }
-    // After the looping, if either of the recipe ids are already favorited, remove them from the array
-    if (favoriteRecipeId.includes(randomNumbers[0])) {
-        randomNumbers.shift();
-    } else if (favoriteRecipeId.includes(randomNumbers[1])) {
-        randomNumbers.pop();
-    } 
     return randomNumbers;
 }
 
@@ -165,6 +159,7 @@ module.exports = {
     findFavorites,
     getTwoRandom,
     getTwoFavorites,
+    loadRandomRecipes,
     requestAxios,
     getNames 
 }

@@ -1,7 +1,7 @@
-# Project 2 (Meal Hack)
+# Project 2 (MealBook)
 
 ## Link to deployed project
-http://mealhack.herokuapp.com/user/calendar
+http://mealhack.herokuapp.com/
 
 ## Project Description
 Our application will allow users to plan their meals for the next 7 days. With working from home on the rise and restrictions on dining at restaurants, cooking at home has become a routine in many people’s lives. Oftentimes it is hard to plan your grocery haul and what to eat for the next day, but this application will help users find recipes, favorite those that they like and plan the meals out!  
@@ -53,6 +53,7 @@ We used the following API to load our databases with delicious food: https://rap
 ![Wireframe Dashboard](/public/img/wireframeDashboard.png)
 ![Wireframe Database](/public/img/wireframeDatabase.png)
 ![Wireframe User Flow](/public/img/wireframeUserFlow.png)
+[User Flow - Expanded](https://drive.google.com/file/d/15T7mIUySI98h_MO3xABhITxptgTHwOvn/view?usp=sharing)
 
 
 ## Unsolved problems/Major Hurdles

@@ -5,33 +5,16 @@ const methodOverride = require('method-override');
 const isLoggedIn = require('../../middleware/isLoggedIn');
 const router = express.Router();
 
+const profileController = require('../../controllers/userControllers/profileController')
+
 router.use(methodOverride('_method'));
 
 // Routes
-router.get('/', isLoggedIn, async (req, res) => {
-    try {
-        res.render('user/profile');
-    } catch (error){
-        res.render('main/404.ejs', {error:error})
-    }
-});
+router.get('/', isLoggedIn, profileController.getProfilePage);
 
-router.get('/edit', isLoggedIn, async (req, res) => {
-    try {
-        res.render('user/profileEdit.ejs')
-    } catch (error){
-        res.render('main/404.ejs', {error:error})
-    }
-})
+router.get('/edit', isLoggedIn, profileController.editProfilePage);
 
-router.put('/edit/:id', isLoggedIn, async (req, res) => {
-    try {
-        const userUpdate = await db.user.update({name:req.body.name.toLowerCase(), email:req.body.email, password:req.body.password},{where:{id:req.user.id}})
-        res.redirect('/user/profile');
-    } catch (error){
-        res.render('main/404.ejs', {error:error})
-    }
-    
-})
+router.put('/edit/:id', isLoggedIn, profileController.updateProfilePage);
+
 
 module.exports = router;
